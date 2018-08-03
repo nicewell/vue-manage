@@ -17,7 +17,7 @@
 		},
 		data(){
 			return{
-				id: 'test',
+				id: 'chart',
 				option: {
 					chart: {
 						type: 'spline',

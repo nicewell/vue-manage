@@ -15,9 +15,9 @@
 		    </div>
 		    <div class="navbar-collapse collapse" id="nav">
 		      <ul class="nav navbar-nav">
-		        <li v-for="(item,index) in navList" :class="{active:index==cur}">
-		        	<router-link :to="item.path"><span class="glyphicon" :class="item.icon"></span>{{item.tag}}</router-link>
-		        </li>
+		      	<router-link v-for="(item,index) in navList" :to="item.path" :key="index" tag="li" active-class="active">
+		      		<a><span class="glyphicon" :class="item.icon"></span>{{item.tag}}</a>
+		      	</router-link>
 		      </ul>
 		      <ul class="nav navbar-nav navbar-right">
 		        <li><a href="#"><span class="glyphicon glyphicon-user"></span>name</a></li>
@@ -34,7 +34,6 @@
 		name: 'Header',
 		data() {
 			return {
-				cur:0,
 				navList:[
 					{
 						'tag':'后台首页',

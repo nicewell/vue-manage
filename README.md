@@ -80,7 +80,20 @@ import HighCharts from 'highcharts'
 
 #### 备注
 -  计算属性传值
+-  用户组件，添加用户的数据怎么更新到用户管理页面去
+```
+vuex进行状态管理
+```
+
 
 - 完整项目描述
   - [vue+vuex+axios+echarts画一个动态更新的中国地图](https://github.com/mazeyqian/vue-china-map)
   - https://juejin.im/post/5b5938325188251ac771cc17?utm_source=gold_browser_extension
+
+
+
+  - 接口
+  - http://yz.lol.qq.com/v1/zh_cn/search/index.json
+  - http://yz.lol.qq.com/v1/zh_cn/explore/index.json
+  - http://yz.lol.qq.com/v1/zh_cn/featured-modules/index.json
+  - http://yz.lol.qq.com/v1/zh_cn/champions/masteryi/index.json

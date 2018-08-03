@@ -1,7 +1,7 @@
 <template>
 	<div class="user-manager">
-		<div class="page-header userM">
-			<h2>用户管理</h2>
+		<div class="page-header">
+			<h3>用户管理</h3>
 		</div>
 		<ul class="nav nav-tabs">
 			<li class="active"><a href="javascript:;">用户列表</a></li>
@@ -24,8 +24,8 @@
 						<div role="presentation" class="dropdown">
 							<button class="btn btn-default dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">操作<span class="caret"></span></button>
 							<ul class="dropdown-menu">
-								<li><a href="javascript:;">删除</a></li>
-								<li><a href="javascript:;" @click="toggleLock(index)">{{getLock}}</a></li>
+								<li><a href="javascript:;" @click="delUser(index)">删除</a></li>
+								<li><a href="javascript:;" @click="toggleLock(index)">{{initLockTxt(user.lock)}}</a></li>
 								<li><a href="javascript:;">发送邮件</a></li>
 							</ul>
 						</div>
@@ -64,7 +64,7 @@
 			}
 		},
 		computed:{
-			getLock(lock){
+			initLock(lock){
 				// console.log('lock:'+lock);
 				// if (lock) {
 				// 	return '解锁';
@@ -77,19 +77,41 @@
 		methods:{
 			toggleLock(m){
 				this.users[m].lock = !this.users[m].lock;
+			},
+			initLockTxt(lock){
+				if (lock) {
+					return '解锁';
+				}else {
+					return '锁定';
+				}
+			},
+			delUser(index){
+				let data = this.users;
+				if (data[index].lock) {
+					alert('已锁定用户,禁止直接删除！');
+					return;
+				}
+				data.splice(index,1);
 			}
 		}
 	}
 </script>
 <style scoped="" lang="scss">
 	.user-manager{
+		height: 800px;
+		.page-header{
+		    margin: 0 0 20px;
+		    .h1, .h2, .h3, h1, h2, h3{
+		    	margin-top: 0;
+		    }
+		}
 		th,td{
 			vertical-align: middle;
 		}
 		tr{
 			&.lock{
 				color: #f00;
-				background-color: #ccc;
+				background-color: #fee;
 			}
 		}
 		.caret{

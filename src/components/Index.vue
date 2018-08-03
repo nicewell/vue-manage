@@ -27,12 +27,12 @@
 	</div>
 </template>
 <script>
-	import Warning from './Warning'
-	import WebCount from './WebCount'
-	import NewsHot from './NewsHot'
-	import TodayCount from './TodayCount'
-	import ServerStatus from './ServerStatus'
-	import MsgBoard from './MsgBoard'
+	import Warning from './index/Warning'
+	import WebCount from './index/WebCount'
+	import NewsHot from './index/NewsHot'
+	import TodayCount from './index/TodayCount'
+	import ServerStatus from './index/ServerStatus'
+	import MsgBoard from './index/MsgBoard'
 
 	export default{
 		name:'Container',
@@ -51,7 +51,7 @@
 		}
 	}
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 	*{
 		-webkit-tap-highlight-color:rgba(0,0,0,0);
 		outline: none;

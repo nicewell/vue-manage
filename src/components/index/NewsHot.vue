@@ -57,7 +57,7 @@
 	}
 </script>
 <style scoped="" lang="scss">
-	@import '../assets/scss/public.scss';
+	@import '../../assets/scss/public.scss';
 
 	.news-hot{
 		.list-group-item{

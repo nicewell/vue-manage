@@ -1,6 +1,6 @@
 <template>
 	<div class="user">
-		<Layout :sidebar="sidebar"></Layout>
+		<Layout :id="id" :navs="navs"></Layout>
 	</div>
 </template>
 <script>
@@ -12,16 +12,17 @@
 		},
 		data(){
 			return{
-				sidebar:[{
-					'tag':'用户管理',
-					'path':''
-				},{
-					'tag':'用户搜索',
-					'path':''
-				},{
-					'tag':'添加用户',
-					'path':''
-				}]
+				id:'user-layout',
+				navs:[
+					{
+						'name':'用户管理',
+						'path':'userManager'
+					},
+					{
+						'name':'添加用户',
+						'path':'userAddPanel'
+					}
+				]
 			}
 		}
 	}

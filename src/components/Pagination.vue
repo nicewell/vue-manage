@@ -3,7 +3,7 @@
 		<ul class="pagination">
 			<li @click="prevPage"><a href="javascript:;"><span>&laquo;</span></a></li>
 
-			<li v-for="(item,index) in pages" :class="{'active':active==++index}" @click="turnPage(index)"><a href="javascript:;">{{item}}</a></li>
+			<li v-for="(item,index) in pages" :class="{'active':active==++index}" :key="index" @click="turnPage(index)"><a href="javascript:;">{{item}}</a></li>
 
 			<li @click="nextPage"><a href="javascript:;"><span>&raquo;</span></a></li>
 		</ul>
