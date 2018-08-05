@@ -36,22 +36,22 @@
 			return {
 				navList:[
 					{
-						'tag':'后台首页',
+						'tag':'英雄首页',
 						'icon':'glyphicon-home',
 						'path':'/'
 					},
 					{
-						'tag':'用户管理',
+						'tag':'英雄用户',
 						'icon':'glyphicon-user',
 						'path':'/user'
 					},
 					{
-						'tag':'内容管理',
+						'tag':'英雄内容',
 						'icon':'glyphicon-list-alt',
 						'path':'/content'
 					},
 					{
-						'tag':'标签管理',
+						'tag':'英雄标签',
 						'icon':'glyphicon-tags',
 						'path':'/tags'
 					}

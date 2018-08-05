@@ -4,15 +4,15 @@
 			<Warning></Warning>
 			<div class="row">
 				<div class="col-md-6">
-					<WebCount></WebCount>
+					<WebCount :countData="countData"></WebCount>
 				</div>
 				<div class="col-md-6">
-					<NewsHot></NewsHot>
+					<NewsHot :news="news"></NewsHot>
 				</div>
 			</div>
 			<div class="row">
 				<div class="col-md-6">
-					<TodayCount></TodayCount>
+					<TodayCount :chartOps="chartOps"></TodayCount>
 				</div>
 				<div class="col-md-6">
 					<ServerStatus></ServerStatus>
@@ -46,8 +46,119 @@
 		},
 		data(){
 			return{
-				// 
+				countData:[],
+				news:[],
+				chartOps:{
+					id:'chart',
+					option: {
+						chart: {
+							type: 'spline',
+							height: 280,
+							// margin: [0, 0, 0, 0]
+						},
+						credits: {
+							enabled: false
+						},
+						plotOptions: {
+							spline: {
+								// 数据标签
+								dataLabels: {
+									enabled: false
+								},
+								// 鼠标跟踪，对应的提示框、点击事件
+								enableMouseTracking: true
+							}
+						},
+						title: {
+							text: '' //表头文字
+						},
+						//x轴显示的内容
+						xAxis: {
+							categories: ['周一','周二','周三','周四','周五','周六','周日'],
+						},
+						//y轴显示的内容
+						yAxis: {
+							title: {
+								text: ''
+							}
+						},
+						//两条数据
+						series: [{
+							name: 'PC端',
+							data: [314,455,755,814,999,905,1000]
+							// data: []
+						}, {
+							name: '移动端',
+							data: [114,255,455,414,599,605,500]
+							// data: []
+						}]
+					}
+				}
 			}
+		},
+		methods:{
+			getData(callback){
+				this.$axios.get('http://api.tgatv.qq.com/app/match/getPlayerGloryRank', {
+						params: {
+							appid: '10005',
+							seasonid: 'KPL2018S1'
+						}
+					})
+					.then((res) => {
+						// console.log(res.data.data);
+						callback && callback(res.data.data);
+					})
+					.catch((error) => {
+						console.log(error);
+					});
+			},
+			initWeb(){
+				this.getData((data)=>{
+					let arr = data.splice(0, 4);
+					arr.forEach((item,i) => {
+						this.countData.push({
+							'tag':item.id,
+							'tNum':item.count,
+							'yNum':item.playername
+						});
+					});
+				});
+			},
+			initHot(){
+				this.getData((data)=>{
+					let arr = data.splice(0, 5);
+					arr.forEach((item,i) => {
+						let step = -24*60*60*1000*(i+1);
+						this.news.push({
+							'url': item.logo,
+							'des':item.seasonid+'战队'+item.playername+',累计'+item.count+'场赛事',
+							'date': new Date().getTime()+step
+						});
+					});
+				});
+			},
+			initChart(){
+				this.getData((data)=>{
+					let series = this.chartOps.option.series;
+					series.forEach((item,i)=>{
+						item.data.splice(0,item.data.length);
+					});
+					let arr = data.splice(0, 7);
+					arr.forEach((item,i)=>{
+						let num = Math.floor(item.id/item.position);
+						series[0].data.push(num);
+						series[1].data.push(Math.floor(num*this.getRan(0.6,0.9)));
+					});
+				});
+			},
+			getRan(min, max) {
+				return Math.round((max - min) * Math.random()) + min;
+			}
+		},
+		mounted(){
+			this.initWeb();
+			this.initHot();
+			this.initChart();
 		}
 	}
 </script>

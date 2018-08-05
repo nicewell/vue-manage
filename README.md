@@ -76,6 +76,31 @@ import HighCharts from 'highcharts'
 4. 配置数据呈现图表
 
 
+### [vuex](https://vuex.vuejs.org/zh/installation.html)
+### [axios]()
+1. 安装引入
+```
+npm install axios --save
+// main.js
+import axios from 'axios'
+Vue.prototype.$axios = axios
+```
+2. 处理跨域
+```
+// config/index.js
+proxyTable: {
+  '/api': {
+    target: 'http://api.tgatv.qq.com/app/match/',
+    changeOrigin: true,
+    pathRewrite: {
+      '^/api': ''
+    }
+  }
+}
+```
+
+
+
 
 
 #### 备注
@@ -84,16 +109,6 @@ import HighCharts from 'highcharts'
 ```
 vuex进行状态管理
 ```
+-  动态组件 & 异步组件
 
 
-- 完整项目描述
-  - [vue+vuex+axios+echarts画一个动态更新的中国地图](https://github.com/mazeyqian/vue-china-map)
-  - https://juejin.im/post/5b5938325188251ac771cc17?utm_source=gold_browser_extension
-
-
-
-  - 接口
-  - http://yz.lol.qq.com/v1/zh_cn/search/index.json
-  - http://yz.lol.qq.com/v1/zh_cn/explore/index.json
-  - http://yz.lol.qq.com/v1/zh_cn/featured-modules/index.json
-  - http://yz.lol.qq.com/v1/zh_cn/champions/masteryi/index.json

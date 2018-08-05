@@ -34,7 +34,7 @@
 				console.log('repair……');
 			},
 			showDelay() {
-				let delay = 1000;
+				let delay = 5000;
 				console.log((delay / 1000) + 's后再提示');
 				this.toggleShow();
 				setTimeout(() => {

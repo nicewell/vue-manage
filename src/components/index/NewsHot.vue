@@ -1,13 +1,13 @@
 <template>
 	<div class="news-hot">
 		<div class="panel panel-default">
-			<div class="panel-heading">网站热帖</div>
+			<div class="panel-heading">英雄热榜</div>
 			<ul class="list-group">
 				<li class="list-group-item" v-for="(item,index) in news">
-					<a :href="item.url">
+					<a :href="item.url" target="_blank">
 						<span class="glyphicon glyphicon-list-alt"></span>
 						{{item.des}}
-						<span class="time">{{item.date}}</span>
+						<span class="time">{{formatTime(item.date)}}</span>
 					</a>
 				</li>
 			</ul>
@@ -19,26 +19,18 @@
 		name:'NewsHot',
 		data(){
 			return{
-				news:[]
+				// news:[{
+				// 	'url':'#',
+				// 	'des':'上半年我国内地出入境人员总数达3.1亿人次',
+				// 	'date': new Date().getTime()
+				// }]
 			}
 		},
+		props:['news'],
 		created(){
-			this.news = this.initNews();
+			// 
 		},
 		methods:{
-			initNews(){
-				let news = [];
-				let len = 5;
-				for (var i = 0; i < len; i++) {
-					let step = i*48*60*60*1000;
-					news.push({
-						'url':'#',
-						'des':'上半年我国内地出入境人员总数达3.1亿人次',
-						'date': this.formatTime(new Date().getTime()+step)
-					});
-				}
-				return news;
-			},
 			formatTime(ms){
 				let date = new Date(ms);
 				let y = date.getFullYear(),

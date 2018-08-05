@@ -26,7 +26,6 @@
 							<ul class="dropdown-menu">
 								<li><a href="javascript:;" @click="delUser(index)">删除</a></li>
 								<li><a href="javascript:;" @click="toggleLock(index)">{{initLockTxt(user.lock)}}</a></li>
-								<li><a href="javascript:;">发送邮件</a></li>
 							</ul>
 						</div>
 					</td>
@@ -34,7 +33,7 @@
 			</tbody>
 		</table>
 		<nav class="pull-right">
-			<Pagination></Pagination>
+			<Pagination :pages="pages"></Pagination>
 		</nav>
 	</div>
 </template>
@@ -47,17 +46,27 @@
 		},
 		data(){
 			return{
+				pages:{
+					active:1,
+					total:3
+				},
 				users:[
 					{
 						'id':1,
 						'name':'张三',
 						'email':'zhangsan@gmail.com',
-						'lock': true
+						'lock': false
 					},
 					{
 						'id':2,
 						'name':'laowang',
 						'email':'laowang@gmail.com',
+						'lock': true
+					},
+					{
+						'id':3,
+						'name':'玄武',
+						'email':'xuanwu@gmail.com',
 						'lock': false
 					}
 				]
@@ -92,6 +101,11 @@
 					return;
 				}
 				data.splice(index,1);
+			}
+		},
+		watch:{
+			'pages.active':function(val,oldVal){
+				console.log(val,oldVal);
 			}
 		}
 	}

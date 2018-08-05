@@ -9,7 +9,7 @@
 						</template>
 					</div>
 				</div>
-				<div class="col-md-10">
+				<div class="col-md-10" @saveData="updata">
 					<router-view/>
 				</div>
 			</div>
@@ -33,7 +33,9 @@
 			navs:[Object,Array,String]
 		},
 		methods:{
-			// 
+			updata(data){
+				console.log(data);
+			}
 		},
 		created(){
 			console.log('ok')

@@ -9,25 +9,44 @@
 		<form action="" method="post">
 			<div class="form-group">
 				<label for="addTitle">标题</label>
-				<input type="text" name="" id="addTitle" class="form-control" placeholder="请输入文章标题">
+				<input type="text" name="" id="addTitle" class="form-control" placeholder="请输入文章标题" v-model="article.tit">
 			</div>
 			<div class="form-group">
 				<label for="addContent">文章内容</label>
-				<textarea id="addContent" class="form-control" rows="15" cols="10" placeholder="请输入文章正文部分"></textarea>
+				<textarea id="addContent" class="form-control" rows="15" cols="10" placeholder="请输入文章正文部分" v-model="article.val"></textarea>
 			</div>
 			<div class="checkbox">
-				<label for=""><input type="checkbox" name="" id="">全局置顶</label>
-				<button type="submit" class="btn btn-default pull-right">发布文章</button>
+				<label><input type="checkbox" name="" id="" v-model="article.top">全局置顶</label>
+				<a href="javascript:;" class="btn btn-default pull-right" @click="sendArticle">发布文章</a>
 			</div>
 		</form>
 	</div>
 </template>
 <script>
-	export default{
-		name:'ContAdd',
-		data(){
-			return{
-				// 
+	export default {
+		name: 'ContAdd',
+		data() {
+			return {
+				article: {
+					tit: '',
+					val: '',
+					top: false
+				}
+			}
+		},
+		methods: {
+			sendArticle() {
+				let article = this.article;
+				if (article.tit.length <= 0 || article.val.length <= 0) {
+					console.log('不得为空');
+					return;
+				}
+				console.log('发送文章为：',article);
+				this.article = {
+					tit: '',
+					val: '',
+					top: false
+				};
 			}
 		}
 	}

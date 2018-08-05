@@ -32,7 +32,7 @@
 			</div>
 			<div class="panel-footer">
 				<button type="button" class="btn btn-default">重置</button>
-				<button type="button" class="btn btn-primary">保存</button>
+				<button type="button" class="btn btn-primary" @click="saveForm">保存</button>
 			</div>
 		</div>
 	</div>
@@ -43,6 +43,17 @@
 		data(){
 			return{
 				// 
+			}
+		},
+		methods:{
+			saveForm(){
+				let data = {
+					'id':1,
+					'name':'玄武',
+					'email':'xuanwu@gmail.com',
+					'lock': false
+				};
+				console.log(data)
 			}
 		}
 	}
