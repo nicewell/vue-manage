@@ -110,5 +110,7 @@ proxyTable: {
 vuex进行状态管理
 ```
 -  动态组件 & 异步组件
+-  vue.set(object,prop,value)
+-  $nextTick
 
 

@@ -25,14 +25,14 @@
 		mounted(){
 			HighCharts.chart(this.chartOps.id, this.chartOps.option);
 		},
-		watch:{
-			'chartOps.option.series':function(val,oldVal){
-				console.log(val,oldVal)
-				// HighCharts.chart(this.chartOps.id, this.chartOps.option);
-			}
-		},
+		// watch:{
+		// 	'chartOps.option.series':function(val,oldVal){
+		// 		console.log(val,oldVal)
+		// 		// HighCharts.chart(this.chartOps.id, this.chartOps.option);
+		// 	}
+		// },
 		methods:{
-			
+			// 
 		}
 	}
 </script>
