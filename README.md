@@ -114,3 +114,19 @@ vuex进行状态管理
 -  $nextTick
 
 
+#### 注意
+- clone下来之后`cnpm install`
+```
+at Error (native)
+npminstall version: 2.2.1
+npminstall args: C:\Program Files\nodejs\node.exe C:\Users\duang\AppData\Roaming\npm\node_modules\cnpm\node_modules\npminstall\bin\install.js --china --userconfig=C:\Users\duang\.cnpmrc --disturl=https://npm.taobao.org/mirrors/node --registry=https://registry.npm.taobao.org
+```
+- 解决方案，权限
+```
+点击开始-------右键命令提示符cmd--------以管理员身份运行--------cd进入到项目----执行npm install | cnpm install
+```
+
+
+### 项目参考
+- https://github.com/lavyun/vue-demo-kugou
+
