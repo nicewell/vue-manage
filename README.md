@@ -77,7 +77,8 @@ import HighCharts from 'highcharts'
 
 
 ### [vuex](https://vuex.vuejs.org/zh/installation.html)
-### [axios]()
+
+### [axios](https://github.com/axios/axios)
 1. 安装引入
 ```
 npm install axios --save
@@ -99,6 +100,8 @@ proxyTable: {
 }
 ```
 
+### [localStorage](https://developer.mozilla.org/zh-CN/docs/Web/API/Window/localStorage)
+- 存取字符串数组
 
 
 
@@ -112,6 +115,7 @@ vuex进行状态管理
 -  动态组件 & 异步组件
 -  vue.set(object,prop,value)
 -  $nextTick
+-  搜索-[条件帅选](https://cn.vuejs.org/v2/guide/filters.html#ad)
 
 
 #### 注意

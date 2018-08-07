@@ -8,9 +8,9 @@
 					</div>
 				</div>
 				<div class="col-md-12">
-					<form action="" method="post">
+					<form action="" method="post" v-on:submit.prevent>
 						<div class="col-md-10">
-							<input type="text" name="" id="" class="form-control" placeholder="请输入需要添加的标签" v-model="placeHolder">
+							<input type="text" name="" id="" class="form-control" placeholder="请输入需要添加的标签" v-model="placeHolder" @keyup.enter="addTag()" @keyup.ctrl.enter="clear">
 						</div>
 						<div class="col-md-2">
 							<button type="button" class="btn btn-default" @click="addTag()">添加</button>
@@ -61,6 +61,7 @@
 					}
 				});
 				this.tags.splice(index, 1);
+				this.setItems();
 			},
 			addTag(){
 				if (this.placeHolder.length<=0) {
@@ -71,12 +72,26 @@
 					'tag':this.placeHolder
 				});
 				this.placeHolder = '';
+				this.setItems();
 			},
 			initId(){
 				this.id = this.tags[this.tags.length-1].id;
+			},
+			getItems(){
+				// let arr = JSON.parse(localStorage.getItem('tags_key')||'[]');
+				let arr = JSON.parse(localStorage.getItem('tags_key')||JSON.stringify(this.tags));
+				this.tags = arr;
+			},
+			setItems(){
+				localStorage.setItem('tags_key', JSON.stringify(this.tags));
+			},
+			clear(){
+				localStorage.clear();
+				this.tags.splice(0,this.tags.length);
 			}
 		},
 		created(){
+			this.getItems();
 			this.initId();
 		}
 	}
@@ -88,8 +103,11 @@
 		}
 		form{
 			display: block;
-			margin: 20px -15px;
+			margin: 0 -15px 20px;
 			overflow: hidden;
+			&>div{
+				margin-top: 20px;
+			}
 		}
 		.alert{
 			& + .alert{

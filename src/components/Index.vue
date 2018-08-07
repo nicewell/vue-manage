@@ -12,7 +12,7 @@
 			</div>
 			<div class="row">
 				<div class="col-md-6">
-					<TodayCount :chartOps="chartOps"></TodayCount>
+					<TodayCount :series="series"></TodayCount>
 				</div>
 				<div class="col-md-6">
 					<ServerStatus></ServerStatus>
@@ -48,52 +48,7 @@
 			return{
 				countData:[],
 				news:[],
-				chartOps:{
-					id:'chart',
-					option: {
-						chart: {
-							type: 'spline',
-							height: 280,
-							// margin: [0, 0, 0, 0]
-						},
-						credits: {
-							enabled: false
-						},
-						plotOptions: {
-							spline: {
-								// 数据标签
-								dataLabels: {
-									enabled: false
-								},
-								// 鼠标跟踪，对应的提示框、点击事件
-								enableMouseTracking: true
-							}
-						},
-						title: {
-							text: '' //表头文字
-						},
-						//x轴显示的内容
-						xAxis: {
-							categories: ['周一','周二','周三','周四','周五','周六','周日'],
-						},
-						//y轴显示的内容
-						yAxis: {
-							title: {
-								text: ''
-							}
-						},
-						// // 两条数据
-						// series: [{
-						// 	name: 'PC端',
-						// 	// data: [314,455,755,814,999,905,1000]
-						// 	data: []
-						// }, {
-						// 	name: '移动端',
-						// 	// data: [114,255,455,414,599,605,500]
-						// 	data: []
-						// }]
-					}
-				}
+				series:[]
 			}
 		},
 		methods:{
@@ -137,27 +92,15 @@
 					});
 				});
 			},
-			initChart() {
+			initChartData() {
 				this.getData((data) => {
 					let arr = data.splice(0, 7);
-					// let series = this.chartOps.option.series;
 					let arrPC = [],arrM = [];
 					arr.forEach((item, i) => {
 						let num = Math.floor(item.id / item.position);
 						arrPC.push(num);
 						arrM.push(Math.floor(num * this.getRan(0.6, 0.9)));
 					});
-					// console.log(arrPC)
-					// // console.log(series);
-					// this.set(series,0,{
-					// 	name: 'PC端',
-					// 	data: arrPC
-					// });
-					// this.set(series,1,{
-					// 	name: '移动端',
-					// 	data: arrM
-					// });
-					Vue.set(this.chartOps,'haha','haha');
 					let _arr = [
 							{
 								name: 'PC端',
@@ -168,7 +111,7 @@
 								data: arrM
 							}
 					];
-					this.set(this.chartOps,'series',_arr);
+					this.series = _arr;
 				});
 			},
 			getRan(min, max) {
@@ -178,7 +121,7 @@
 		mounted(){
 			this.initWeb();
 			this.initHot();
-			this.initChart();
+			this.initChartData();
 		}
 	}
 </script>
