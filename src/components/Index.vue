@@ -12,7 +12,7 @@
 			</div>
 			<div class="row">
 				<div class="col-md-6">
-					<TodayCount :chartOps="chartOps"></TodayCount>
+					<TodayCount :series="series"></TodayCount>
 				</div>
 				<div class="col-md-6">
 					<ServerStatus></ServerStatus>
@@ -48,6 +48,7 @@
 			return{
 				countData:[],
 				news:[],
+<<<<<<< HEAD
 				chartOps:{
 					id:'chart',
 					option: {
@@ -94,6 +95,9 @@
 						}]
 					}
 				}
+=======
+				series:[]
+>>>>>>> 5c8a42fabae0ed8b1b1ed0198aaf9d404aea0647
 			}
 		},
 		methods:{
@@ -137,7 +141,7 @@
 					});
 				});
 			},
-			initChart() {
+			initChartData() {
 				this.getData((data) => {
 					let arr = data.splice(0, 7);
 					let arrPC = [],arrM = [];
@@ -156,9 +160,13 @@
 								data: arrM
 							}
 					];
+<<<<<<< HEAD
 					console.log('parent')
 					this.$set(this.chartOps.option,'series',_arr);
 					// console.log(JSON.stringify(this.chartOps))
+=======
+					this.series = _arr;
+>>>>>>> 5c8a42fabae0ed8b1b1ed0198aaf9d404aea0647
 				});
 			},
 			getRan(min, max) {
@@ -168,7 +176,7 @@
 		mounted(){
 			this.initWeb();
 			this.initHot();
-			this.initChart();
+			this.initChartData();
 		}
 	}
 </script>
