@@ -134,3 +134,45 @@ npminstall args: C:\Program Files\nodejs\node.exe C:\Users\duang\AppData\Roaming
 ### 项目参考
 - https://github.com/lavyun/vue-demo-kugou
 
+
+
+### es6
+
+```
+let show = (str) => {return 'str:'+str;}
+/**
+ * 一个参数括号可以省略
+ * 不要花括号即为 return 值
+ */
+let show = str => 'str:'+str;
+// 高阶函数，箭头>=2
+function fn(m){
+  retunr function(n){
+    return m + n;
+  }
+}
+let fn = (m) => {
+  return (n) => {
+    return m + n;
+  }
+}
+let fn = m => n => m + n;
+```
+
+
+
+
+
+#### TODO
+- [ ] vuex全局状态-loading-消息提示(新用户进入)
+```
+如userInfo父组件用到,别的子组件也用到,孙组件也用动
+// prpos-传参-但是项目庞大的时候难以维护
+// 复杂的数据共享情况,即用vuex较易维护
+```
+- [ ] [按需更换UI](http://element.eleme.io)
+- [ ] [数据模拟Mockjs](http://mockjs.com)
+- [ ] 处理分页
+- [ ] vuex-处理页面头部加载状态条
+- [ ] [打包webapp](http://mint-ui.github.io/#!/zh-cn)
+
