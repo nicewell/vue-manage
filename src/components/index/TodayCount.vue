@@ -68,31 +68,6 @@
 			}
 		},
 		mounted(){
-<<<<<<< HEAD
-			// console.log('child')
-			// console.log(this.chartOps)
-			// setTimeout(()=>{
-			// 	console.log('child')
-			// 	console.log(this.chartOps)
-			// 	HighCharts.chart(this.chartOps.id, this.chartOps.option);
-			// }, 1000);
-		},
-		watch:{
-			'chartOps':{
-				handler: function(val, oldVal) {
-					console.log(val, oldVal)
-					this.initHighCharts();
-					// HighCharts.chart(this.chartOps.id, this.chartOps.option);
-				},
-				deep:true
-			}
-		},
-		methods:{
-			initHighCharts(){
-				HighCharts.chart(this.chartOps.id, this.chartOps.option);
-			}
-		}
-=======
 			this.initChart();
 		},
 		methods:{
@@ -109,7 +84,6 @@
 				}
 			}
 		},
->>>>>>> 5c8a42fabae0ed8b1b1ed0198aaf9d404aea0647
 	}
 </script>
 <style scoped="" lang="scss">
