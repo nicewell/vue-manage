@@ -82,16 +82,16 @@
 								text: ''
 							}
 						},
-						// // 两条数据
-						// series: [{
-						// 	name: 'PC端',
-						// 	// data: [314,455,755,814,999,905,1000]
-						// 	data: []
-						// }, {
-						// 	name: '移动端',
-						// 	// data: [114,255,455,414,599,605,500]
-						// 	data: []
-						// }]
+						// 两条数据
+						series: [{
+							name: 'PC端',
+							// data: [314,455,755,814,999,905,1000]
+							data: []
+						}, {
+							name: '移动端',
+							// data: [114,255,455,414,599,605,500]
+							data: []
+						}]
 					}
 				}
 			}
@@ -140,24 +140,12 @@
 			initChart() {
 				this.getData((data) => {
 					let arr = data.splice(0, 7);
-					// let series = this.chartOps.option.series;
 					let arrPC = [],arrM = [];
 					arr.forEach((item, i) => {
 						let num = Math.floor(item.id / item.position);
 						arrPC.push(num);
 						arrM.push(Math.floor(num * this.getRan(0.6, 0.9)));
 					});
-					// console.log(arrPC)
-					// // console.log(series);
-					// this.set(series,0,{
-					// 	name: 'PC端',
-					// 	data: arrPC
-					// });
-					// this.set(series,1,{
-					// 	name: '移动端',
-					// 	data: arrM
-					// });
-					Vue.set(this.chartOps,'haha','haha');
 					let _arr = [
 							{
 								name: 'PC端',
@@ -168,7 +156,9 @@
 								data: arrM
 							}
 					];
-					this.set(this.chartOps,'series',_arr);
+					console.log('parent')
+					this.$set(this.chartOps.option,'series',_arr);
+					// console.log(JSON.stringify(this.chartOps))
 				});
 			},
 			getRan(min, max) {

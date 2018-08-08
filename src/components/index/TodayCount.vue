@@ -23,16 +23,28 @@
 			}
 		},
 		mounted(){
-			HighCharts.chart(this.chartOps.id, this.chartOps.option);
+			// console.log('child')
+			// console.log(this.chartOps)
+			// setTimeout(()=>{
+			// 	console.log('child')
+			// 	console.log(this.chartOps)
+			// 	HighCharts.chart(this.chartOps.id, this.chartOps.option);
+			// }, 1000);
 		},
-		// watch:{
-		// 	'chartOps.option.series':function(val,oldVal){
-		// 		console.log(val,oldVal)
-		// 		// HighCharts.chart(this.chartOps.id, this.chartOps.option);
-		// 	}
-		// },
+		watch:{
+			'chartOps':{
+				handler: function(val, oldVal) {
+					console.log(val, oldVal)
+					this.initHighCharts();
+					// HighCharts.chart(this.chartOps.id, this.chartOps.option);
+				},
+				deep:true
+			}
+		},
 		methods:{
-			// 
+			initHighCharts(){
+				HighCharts.chart(this.chartOps.id, this.chartOps.option);
+			}
 		}
 	}
 </script>
