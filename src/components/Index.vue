@@ -114,6 +114,17 @@
 					this.series = _arr;
 				});
 			},
+			getNews(){
+				this.$axios.get('/news', {
+						params: {}
+					})
+					.then(res => {
+						console.log(res);
+					})
+					.catch(error => {
+						console.log(error);
+					});
+			},
 			getRan(min, max) {
 				return Math.round((max - min) * Math.random()) + min;
 			}
@@ -122,6 +133,7 @@
 			this.initWeb();
 			this.initHot();
 			this.initChartData();
+			this.getNews();
 		}
 	}
 </script>

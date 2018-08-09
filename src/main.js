@@ -16,10 +16,15 @@ import Store from './store/index.js'
 import axios from 'axios'
 Vue.prototype.$axios = axios
 
+
+import mock from './mock.js'
+
+
 Vue.config.productionTip = false
 
+
 /* eslint-disable no-new */
-let vm = new Vue({
+new Vue({
 	el: '#app',
 	router,
 	Store,
@@ -27,4 +32,10 @@ let vm = new Vue({
 		App
 	},
 	template: '<App/>'
-})
+});
+
+Vue.filter('getYMD',function(input) {
+	return input.split(' ')[0];
+});
+
+

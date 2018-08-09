@@ -77,6 +77,7 @@ import HighCharts from 'highcharts'
 
 
 ### [vuex](https://vuex.vuejs.org/zh/installation.html)
+- 全局状态管理
 
 ### [axios](https://github.com/axios/axios)
 1. 安装引入
@@ -100,6 +101,55 @@ proxyTable: {
 }
 ```
 
+
+### [Mockjs](http://mockjs.com)
+1. 安装
+```
+npm install mockjs --save-dev
+```
+2. 引入配置
+```
+// src下新建mock.js并引用与配置数据
+import Mock from 'mockjs'
+// 获取 mock.Random 对象
+const Random = Mock.Random;
+// mock一组数据
+const produceNewsData = function() {
+    let articles = [];
+    for (let i = 0; i < 5; i++) {
+        let newArticleObject = {
+            title: Random.csentence(5, 30), //  Random.csentence( min, max )
+            thumbnail_pic_s: Random.dataImage('300x250', 'mock的图片'), // Random.dataImage( size, text ) 生成一段随机的 Base64 图片编码
+            author_name: Random.cname(), // Random.cname() 随机生成一个常见的中文姓名
+            date: Random.date() + ' ' + Random.time() // Random.date()指示生成的日期字符串的格式,默认为yyyy-MM-dd；Random.time() 返回一个随机的时间字符串
+        }
+        articles.push(newArticleObject)
+    }
+
+    return {
+        articles: articles
+    }
+}
+
+// Mock.mock( url, post/get , 返回的数据)；
+Mock.mock('news', 'get', produceNewsData);
+```
+3. 发起请求响应数据[配置路径需要匹配如：`news`]
+```
+mounted(){
+  this.$axios.get('news', {
+      params: {}
+    })
+    .then(res => {
+      console.log(res);
+    })
+    .catch(error => {
+      console.log(error);
+    });
+}
+```
+4. 
+
 ### [localStorage](https://developer.mozilla.org/zh-CN/docs/Web/API/Window/localStorage)
 - 存取字符串数组
 
@@ -116,6 +166,7 @@ vuex进行状态管理
 -  vue.set(object,prop,value)
 -  $nextTick
 -  搜索-[条件帅选](https://cn.vuejs.org/v2/guide/filters.html#ad)
+-  过滤器
 
 
 #### 注意
