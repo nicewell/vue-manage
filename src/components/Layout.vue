@@ -42,8 +42,4 @@
 		}
 	}
 </script>
-<style scoped="" lang="scss">
-	.layout{
-
-	}
-</style>
+<style scoped="" lang="scss"></style>

@@ -78,6 +78,7 @@ import HighCharts from 'highcharts'
 
 ### [vuex](https://vuex.vuejs.org/zh/installation.html)
 - 全局状态管理
+- 登录token,用户信息,一些全局个人偏好设置
 
 ### [axios](https://github.com/axios/axios)
 1. 安装引入
@@ -215,14 +216,18 @@ let fn = m => n => m + n;
 
 
 #### TODO
+- [ ] 登录注册模块
 - [ ] vuex全局状态-loading-消息提示(新用户进入)
 ```
 如userInfo父组件用到,别的子组件也用到,孙组件也用动
 // prpos-传参-但是项目庞大的时候难以维护
 // 复杂的数据共享情况,即用vuex较易维护
 ```
+- [ ] 每一个请求都是要带 token 来验证权限的
 - [ ] [按需更换UI](http://element.eleme.io)
 - [ ] [数据模拟Mockjs](http://mockjs.com)
+- [ ] 大搜车[EasyMock](https://easy-mock.com/docs)
+> Easy Mock 引入了 Mock.js
 - [ ] 处理分页
 - [ ] vuex-处理页面头部加载状态条
 - [ ] [打包webapp](http://mint-ui.github.io/#!/zh-cn)
