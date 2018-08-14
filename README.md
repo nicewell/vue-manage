@@ -218,6 +218,8 @@ let fn = m => n => m + n;
 #### TODO
 - [ ] 登录注册模块
 - [ ] vuex全局状态-loading-消息提示(新用户进入)
+- [ ] 首页漏洞修复提示更换出现消失方式
+- [ ] 首页漏洞修复提示状态在各个页面都需要获取
 ```
 如userInfo父组件用到,别的子组件也用到,孙组件也用动
 // prpos-传参-但是项目庞大的时候难以维护
@@ -231,4 +233,45 @@ let fn = m => n => m + n;
 - [ ] 处理分页
 - [ ] vuex-处理页面头部加载状态条
 - [ ] [打包webapp](http://mint-ui.github.io/#!/zh-cn)
+- [ ] 
 
+
+
+
+#### vue源码理解
+- MVVM框架基本原理
+  - 数据代理
+  - 模板解析
+  - 数据绑定
+
+
+#### 基础知识补充之源码分析
+- arr
+```
+// 将伪数组转换成真数组
+var lis = document.querySelectorAll('li');
+// 伪数组,本质是对象,但是拥有length和通过下标可以索引到的特性
+console.log(lis instanceof Array);// false
+var arr = [].slice.call(lis);
+console.log(arr instanceof Array);// true
+```
+- vue核心用到[`Object.defineProperty(obj, prop, descriptor)`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty)
+```
+// Object.defineProperty(obj, prop, descriptor)
+// 不支持IE8，所以vue也无法支持IE8
+```
+- [Object.keys(obj)](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/keys)
+```
+// 得到对象自身可枚举属性组成的数组
+```
+- [DocumentFragment](https://developer.mozilla.org/zh-CN/docs/Web/API/DocumentFragment)
+> 文档碎片(高效批量更新多个节点)
+- 数据代理
+1. 数据代理：通过一个对象代理另一个对象中属性的操作(读/写)
+2. vue数据代理；通过vm对象来代理data对象中所有属性的操作
+3. 好处：更方便操作data中的数据
+4. 基本实现流程
+  - 通过Object.defineProperty()给vm添加与data对象的属性对应的属性描述符
+  - 所有添加的属性都包含getter/setter
+  - getter/setter内部去操作data中对应的属性数据
+- 
