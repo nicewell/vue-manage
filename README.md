@@ -189,7 +189,7 @@ npminstall args: C:\Program Files\nodejs\node.exe C:\Users\duang\AppData\Roaming
 
 
 ### es6
-
+- 箭头函数
 ```
 let show = (str) => {return 'str:'+str;}
 /**
@@ -209,8 +209,31 @@ let fn = (m) => {
   }
 }
 let fn = m => n => m + n;
+// 返回值为json时注意
+const r = (r)=>{
+  return{
+    r:r,
+    l:2*r*3.14,
+    s:3.14*r*2
+  }
+}
+console.log(r(5));
+// 不加 return 时候，{} 要加圆括号()
+const r = (r)=>({
+  r:r,
+  l:2*r*3.14,
+  s:3.14*r*2
+})
+console.log(r(5));
 ```
 
+- let为解决for
+- const定义常量，可以用来定义函数，函数的参数会变，但是函数基本不会变
+- 字符串操作符
+  - `str.repeat(10)`
+  - `str.startWith('ossweb-img')`
+  - `str.endWith('.shtml')`
+  - `str.includes('a20180102lol')`
 
 
 
@@ -245,7 +268,10 @@ let fn = m => n => m + n;
   - 数据绑定
 
 
-#### 基础知识补充之源码分析
+#### 基础知识补充
+- `--save-dev`和`--save`
+> `--save-dev`表示添加一个“开发依赖”,`--save`表示添加运行依赖
+- 
 - arr
 ```
 // 将伪数组转换成真数组
@@ -274,4 +300,3 @@ console.log(arr instanceof Array);// true
   - 通过Object.defineProperty()给vm添加与data对象的属性对应的属性描述符
   - 所有添加的属性都包含getter/setter
   - getter/setter内部去操作data中对应的属性数据
-- 
