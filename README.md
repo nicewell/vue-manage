@@ -234,6 +234,10 @@ console.log(r(5));
   - `str.startWith('ossweb-img')`
   - `str.endWith('.shtml')`
   - `str.includes('a20180102lol')`
+- 数组实例的 entries() ， keys() 和 values()
+> ES6 提供三个新的方法 —— entries()，keys()和values() —— 用于遍历数组。它们都返回一个遍历器对象，可以用for...of循环进行遍历，唯一的区别是keys()是对键名的遍历、values()是对键值的遍历，entries()是对键值对的遍历
+
+- 
 
 
 
@@ -241,7 +245,7 @@ console.log(r(5));
 #### TODO
 - [ ] 登录注册模块
 - [ ] vuex全局状态-loading-消息提示(新用户进入)
-- [ ] 首页漏洞修复提示更换出现消失方式
+- [ ] vuex-处理页面头部加载状态条
 - [ ] 首页漏洞修复提示状态在各个页面都需要获取
 ```
 如userInfo父组件用到,别的子组件也用到,孙组件也用动
@@ -254,14 +258,18 @@ console.log(r(5));
 - [ ] 大搜车[EasyMock](https://easy-mock.com/docs)
 > Easy Mock 引入了 Mock.js
 - [ ] 处理分页
-- [ ] vuex-处理页面头部加载状态条
 - [ ] [打包webapp](http://mint-ui.github.io/#!/zh-cn)
-- [ ] 
+- [ ] SSR-服务端渲染，SEO优化
+  - express
+  - vue-server-renderer
+  - nuxt
 
 
 
 
 #### vue源码理解
+- [Vue.js 技术揭秘](https://ustbhuangyi.github.io/vue-analysis/)
+- [Vue技术内幕](http://hcysun.me/vue-design/)
 - MVVM框架基本原理
   - 数据代理
   - 模板解析
