@@ -18,34 +18,36 @@
 	</div>
 </template>
 <script>
-	export default {
-		name: 'Warning',
-		data() {
-			return {
-				hasBug: true,
-				warning: {
-					'tit': '网站程序有漏洞，急需修复！',
-					'des': '当前版本程序(V1.22)存在严重安全问题，容易造成攻击，请即可修复！'
-				}
-			}
-		},
-		methods: {
-			repair() {
-				console.log('repair……');
-			},
-			showDelay() {
-				let delay = 5000;
-				console.log((delay / 1000) + 's后再提示');
-				this.toggleShow();
-				setTimeout(() => {
-					this.toggleShow();
-				}, delay);
-			},
-			toggleShow() {
-				this.hasBug = !this.hasBug;
-			}
-		}
-	}
+
+export default {
+  name: 'Warning',
+  data() {
+    return {
+      hasBug: true,
+      warning: {
+        'tit': '网站程序有漏洞，急需修复！',
+        'des': '当前版本程序(V1.22)存在严重安全问题，容易造成攻击，请即可修复！'
+      }
+    }
+  },
+  methods: {
+    repair() {
+      console.log('repair……')
+    },
+    showDelay() {
+      let delay = 5000
+      console.log((delay / 1000) + 's后再提示')
+      this.toggleShow()
+      setTimeout(() => {
+        this.toggleShow()
+      }, delay)
+    },
+    toggleShow() {
+      this.hasBug = !this.hasBug
+    }
+  }
+}
+
 </script>
 <style scoped="" lang="scss">
 	.warning{

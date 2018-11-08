@@ -17,29 +17,29 @@
 	</div>
 </template>
 <script>
-	import UserManager from './user/UserManager'
-	export default{
-		name:'Layout',
-		components:{
-			UserManager
-		},
-		data(){
-			return{
-				// 
-			}
-		},
-		props:{
-			id:String,
-			navs:[Object,Array,String]
-		},
-		methods:{
-			updata(data){
-				console.log(data);
-			}
-		},
-		created(){
-			console.log('ok')
-		}
-	}
+import UserManager from './user/UserManager'
+export default {
+  name: 'Layout',
+  components: {
+  UserManager},
+  data() {
+    return {
+      // 
+    }
+  },
+  props: {
+    id: String,
+    navs: [Object, Array, String]
+  },
+  methods: {
+    updata(data) {
+      console.log(data)
+    }
+  },
+  created() {
+    console.log('ok')
+  }
+}
+
 </script>
 <style scoped="" lang="scss"></style>

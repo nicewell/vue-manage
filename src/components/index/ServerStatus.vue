@@ -15,82 +15,84 @@
 	</div>
 </template>
 <script>
-	export default {
-		name: 'ServerStatus',
-		data() {
-			return {
-				serverData: [{
-					'name': '内存使用率',
-					'percent': 80,
-					'type': ''
-				}, {
-					'name': '数据库使用率',
-					'percent': 20,
-					'type': ''
-				}, {
-					'name': '磁盘使用率',
-					'percent': 60,
-					'type': ''
-				}, {
-					'name': 'CPU使用率',
-					'percent': 92,
-					'type': ''
-				}]
-			}
-		},
-		computed: {
-			getStatus(m) {
-				let status = 'success';
-				if (m > 50) {
-					status = 'info';
-				}
-				if (m > 70) {
-					status = 'warning';
-				}
-				if (m > 90) {
-					status = 'danger';
-				}
-				return 'progress-bar-' + status;
-			}
-		},
-		created() {
-			this.resetProgressBar()
-		},
-		methods: {
-			resetProgressBar() {
-				let data = this.serverData;
-				let wekit = 'progress-bar-';
-				data.forEach((item, index) => {
-					let m = item.percent;
-					let status = 'success';
-					if (m > 50) {
-						status = 'info';
-					}
-					if (m > 70) {
-						status = 'warning';
-					}
-					if (m > 90) {
-						status = 'danger';
-					}
-					item.type = wekit + status;
-				});
-			},
-			// 为何计算属性此操作不行
-			getSta(m) {
-				let status = 'success';
-				if (m > 50) {
-					status = 'info';
-				}
-				if (m > 70) {
-					status = 'warning';
-				}
-				if (m > 90) {
-					status = 'danger';
-				}
-				return 'progress-bar-' + status;
-			}
-		}
-	}
+
+export default {
+  name: 'ServerStatus',
+  data() {
+    return {
+      serverData: [{
+        'name': '内存使用率',
+        'percent': 80,
+        'type': ''
+      }, {
+        'name': '数据库使用率',
+        'percent': 20,
+        'type': ''
+      }, {
+        'name': '磁盘使用率',
+        'percent': 60,
+        'type': ''
+      }, {
+        'name': 'CPU使用率',
+        'percent': 92,
+        'type': ''
+      }]
+    }
+  },
+  computed: {
+    getStatus(m) {
+      let status = 'success'
+      if (m > 50) {
+        status = 'info'
+      }
+      if (m > 70) {
+        status = 'warning'
+      }
+      if (m > 90) {
+        status = 'danger'
+      }
+      return 'progress-bar-' + status
+    }
+  },
+  created() {
+    this.resetProgressBar()
+  },
+  methods: {
+    resetProgressBar() {
+      let data = this.serverData
+      let wekit = 'progress-bar-'
+      data.forEach((item, index) => {
+        let m = item.percent
+        let status = 'success'
+        if (m > 50) {
+          status = 'info'
+        }
+        if (m > 70) {
+          status = 'warning'
+        }
+        if (m > 90) {
+          status = 'danger'
+        }
+        item.type = wekit + status
+      })
+    },
+    // 为何计算属性此操作不行
+    getSta(m) {
+      let status = 'success'
+      if (m > 50) {
+        status = 'info'
+      }
+      if (m > 70) {
+        status = 'warning'
+      }
+      if (m > 90) {
+        status = 'danger'
+      }
+      return 'progress-bar-' + status
+    }
+  }
+}
+
 </script>
 <style scoped="" lang="scss">
 	// 

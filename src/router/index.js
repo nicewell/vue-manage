@@ -16,20 +16,19 @@ import UserAddPanel from '@/components/user/UserAddPanel'
 
 Vue.use(Router)
 
-
 export default new Router({
   routes: [
-  	{
-  	  path: '/',
-  	  name: 'Index',
-  	  component: Index
-  	},
+    {
+      path: '/',
+      name: 'Index',
+      component: Index
+    },
     {
       path: '/content',
       redirect: '/content/contentManager',
       name: 'Content',
       component: Content,
-      children:[
+      children: [
         {
           path: 'contentManager',
           name: 'ContentManager',
@@ -47,7 +46,7 @@ export default new Router({
       redirect: '/user/userManager',
       name: 'User',
       component: User,
-      children:[
+      children: [
         {
           path: 'userManager',
           name: 'UserManager',

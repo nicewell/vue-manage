@@ -30,71 +30,73 @@
 	</div>
 </template>
 <script>
-	export default{
-		name:'Tags',
-		data(){
-			return{
-				placeHolder:'',
-				id:1,
-				tags:[
-					{
-						'id':1,
-						'tag':'King'
-					},
-					{
-						'id':2,
-						'tag':'CF'
-					},
-					{
-						'id':3,
-						'tag':'DNF'
-					}
-				]
-			}
-		},
-		methods:{
-			delTag(id){
-				let index;
-				this.tags.forEach((item, i) => {
-					if (item.id==id) {
-						index = i;
-					}
-				});
-				this.tags.splice(index, 1);
-				this.setItems();
-			},
-			addTag(){
-				if (this.placeHolder.length<=0) {
-					return;
-				}
-				this.tags.push({
-					'id':++this.id,
-					'tag':this.placeHolder
-				});
-				this.placeHolder = '';
-				this.setItems();
-			},
-			initId(){
-				this.id = this.tags[this.tags.length-1].id;
-			},
-			getItems(){
-				// let arr = JSON.parse(localStorage.getItem('tags_key')||'[]');
-				let arr = JSON.parse(localStorage.getItem('tags_key')||JSON.stringify(this.tags));
-				this.tags = arr;
-			},
-			setItems(){
-				localStorage.setItem('tags_key', JSON.stringify(this.tags));
-			},
-			clear(){
-				localStorage.clear();
-				this.tags.splice(0,this.tags.length);
-			}
-		},
-		created(){
-			this.getItems();
-			this.initId();
-		}
-	}
+
+export default {
+  name: 'Tags',
+  data() {
+    return {
+      placeHolder: '',
+      id: 1,
+      tags: [
+        {
+          'id': 1,
+          'tag': 'King'
+        },
+        {
+          'id': 2,
+          'tag': 'CF'
+        },
+        {
+          'id': 3,
+          'tag': 'DNF'
+        }
+      ]
+    }
+  },
+  methods: {
+    delTag(id) {
+      let index
+      this.tags.forEach((item, i) => {
+        if (item.id == id) {
+          index = i
+        }
+      })
+      this.tags.splice(index, 1)
+      this.setItems()
+    },
+    addTag() {
+      if (this.placeHolder.length <= 0) {
+        return
+      }
+      this.tags.push({
+        'id': ++this.id,
+        'tag': this.placeHolder
+      })
+      this.placeHolder = ''
+      this.setItems()
+    },
+    initId() {
+      this.id = this.tags[this.tags.length - 1].id
+    },
+    getItems() {
+      // let arr = JSON.parse(localStorage.getItem('tags_key')||'[]')
+      let arr = JSON.parse(localStorage.getItem('tags_key') || JSON.stringify(this.tags))
+      this.tags = arr
+    },
+    setItems() {
+      localStorage.setItem('tags_key', JSON.stringify(this.tags))
+    },
+    clear() {
+      localStorage.clear()
+      this.tags.splice(0, this.tags.length)
+    }
+  },
+  created() {
+    this.getItems()
+    this.initId()
+  }
+}
+
 </script>
 <style scoped="" lang="scss">
 	.tags{

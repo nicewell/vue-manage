@@ -24,23 +24,25 @@
 	</div>
 </template>
 <script>
-	export default{
-		name:'WebCount',
-		data(){
-			return{
-				// 
-			}
-		},
-		props:{
-			countData:{
-				type:Array,
-				deafult:[]
-			}
-		},
-		watch:{
-			// 
-		}
-	}
+
+export default {
+  name: 'WebCount',
+  data() {
+    return {
+      // 
+    }
+  },
+  props: {
+    countData: {
+      type: Array,
+      deafult: []
+    }
+  },
+  watch: {
+    // 
+  }
+}
+
 </script>
 <style scoped="" lang="scss">
 	.web-count{

@@ -15,38 +15,40 @@
 	</div>
 </template>
 <script>
-	export default{
-		name:'NewsHot',
-		data(){
-			return{
-				// news:[{
-				// 	'url':'#',
-				// 	'des':'上半年我国内地出入境人员总数达3.1亿人次',
-				// 	'date': new Date().getTime()
-				// }]
-			}
-		},
-		props:['news'],
-		created(){
-			// 
-		},
-		methods:{
-			formatTime(ms){
-				let date = new Date(ms);
-				let y = date.getFullYear(),
-					m = date.getMonth()+1,
-					d = date.getDate();
-				return this.checkLength(y)+'/'+this.checkLength(m)+'/'+this.checkLength(d);
-			},
-			checkLength(m){
-				let str = m.toString();
-				if (str.length==1) {
-					return '0' + str;
-				}
-				return str;
-			}
-		}
-	}
+
+export default {
+  name: 'NewsHot',
+  data() {
+    return {
+      // news:[{
+      // 	'url':'#',
+      // 	'des':'上半年我国内地出入境人员总数达3.1亿人次',
+      // 	'date': new Date().getTime()
+      // }]
+    }
+  },
+  props: ['news'],
+  created() {
+    // 
+  },
+  methods: {
+    formatTime(ms) {
+      let date = new Date(ms)
+      let y = date.getFullYear(),
+					m = date.getMonth() + 1,
+					d = date.getDate()
+      return this.checkLength(y) + '/' + this.checkLength(m) + '/' + this.checkLength(d)
+    },
+    checkLength(m) {
+      let str = m.toString()
+      if (str.length == 1) {
+        return '0' + str
+      }
+      return str
+    }
+  }
+}
+
 </script>
 <style scoped="" lang="scss">
 	@import '../../assets/scss/public.scss';

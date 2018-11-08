@@ -23,33 +23,35 @@
 	</div>
 </template>
 <script>
-	export default {
-		name: 'ContAdd',
-		data() {
-			return {
-				article: {
-					tit: '',
-					val: '',
-					top: false
-				}
-			}
-		},
-		methods: {
-			sendArticle() {
-				let article = this.article;
-				if (article.tit.length <= 0 || article.val.length <= 0) {
-					console.log('不得为空');
-					return;
-				}
-				console.log('发送文章为：',article);
-				this.article = {
-					tit: '',
-					val: '',
-					top: false
-				};
-			}
-		}
-	}
+
+export default {
+  name: 'ContAdd',
+  data() {
+    return {
+      article: {
+        tit: '',
+        val: '',
+        top: false
+      }
+    }
+  },
+  methods: {
+    sendArticle() {
+      let article = this.article
+      if (article.tit.length <= 0 || article.val.length <= 0) {
+        console.log('不得为空')
+        return
+      }
+      console.log('发送文章为：', article)
+      this.article = {
+        tit: '',
+        val: '',
+        top: false
+      }
+    }
+  }
+}
+
 </script>
 <style scoped="" lang="scss">
 	textarea{

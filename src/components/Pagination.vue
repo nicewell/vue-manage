@@ -10,41 +10,43 @@
 	</div>
 </template>
 <script>
-	export default{
-		name:'Pagination',
-		data(){
-			return{
-				// 
-			}
-		},
-		props:{
-			pages:{
-				active:{
-					type:Number,
-					default:1
-				},
-				total:[Number]
-			}
-		},
-		methods:{
-			prevPage(){
-				if (this.pages.active<=1) {
-					return;
-				}
-				this.turnPage(--this.pages.active);
-			},
-			nextPage(){
-				if (this.pages.active>=this.pages.total) {
-					return;
-				}
-				this.turnPage(++this.pages.active);
-			},
-			turnPage(m){
-				this.pages.active = m;
-				console.log(this.pages.active);
-			}
-		}
-	}
+
+export default {
+  name: 'Pagination',
+  data() {
+    return {
+      // 
+    }
+  },
+  props: {
+    pages: {
+      active: {
+        type: Number,
+        default: 1
+      },
+      total: [Number]
+    }
+  },
+  methods: {
+    prevPage() {
+      if (this.pages.active <= 1) {
+        return
+      }
+      this.turnPage(--this.pages.active)
+    },
+    nextPage() {
+      if (this.pages.active >= this.pages.total) {
+        return
+      }
+      this.turnPage(++this.pages.active)
+    },
+    turnPage(m) {
+      this.pages.active = m
+      console.log(this.pages.active)
+    }
+  }
+}
+
 </script>
 <style scoped="" lang="scss">
 	.pagination-group{

@@ -38,72 +38,74 @@
 	</div>
 </template>
 <script>
-	export default{
-		name:'MsgBoard',
-		data(){
-			return{
-				placeholderPhoto:'https://placehold.it/64x64',
-				val:'',
-				chatRecords:[
-					{
-						'user':'成龙',
-						'photo':'',
-						'cont':'李连杰呀，今晚请把网站程序升级一下哈，现在的系统有漏洞，安全起见！'
-					}
-				],
-				contacts:[
-					{
-						'name':'站长(成龙)',
-						'phone':'13134848615'
-					},
-					{
-						'name':'技术(大牛)',
-						'phone':'13134848615'
-					},
-					{
-						'name':'推广(熊二)',
-						'phone':'13134848615'
-					},
-					{
-						'name':'客服(小美)',
-						'phone':'0909-9989989'
-					}
-				]
-			}
-		},
-		computed:{
-			// checkSrc(src){
-			// 	if (src!='') {
-			// 		return src;
-			// 	}else {
-			// 		return this.placeholderPhoto;
-			// 	}
-			// }
-		},
-		methods:{
-			sendMsg(){
-				if (this.val.length<=0) {
-					console.log('请输入内容……');
-					return;
-				}
-				console.log(this.val);
-				this.chatRecords.push({
-					'user':'MyName',
-					'photo':'',
-					'cont':this.val
-				});
-				this.val = '';
-			},
-			checkSrc(src){
-				console.log(src)
-				if (src!='') {
-					return src;
-				}else {
-					return this.placeholderPhoto;
-				}
-			}
-		}
-	}
+
+export default {
+  name: 'MsgBoard',
+  data() {
+    return {
+      placeholderPhoto: 'https://placehold.it/64x64',
+      val: '',
+      chatRecords: [
+        {
+          'user': '成龙',
+          'photo': '',
+          'cont': '李连杰呀，今晚请把网站程序升级一下哈，现在的系统有漏洞，安全起见！'
+        }
+      ],
+      contacts: [
+        {
+          'name': '站长(成龙)',
+          'phone': '13134848615'
+        },
+        {
+          'name': '技术(大牛)',
+          'phone': '13134848615'
+        },
+        {
+          'name': '推广(熊二)',
+          'phone': '13134848615'
+        },
+        {
+          'name': '客服(小美)',
+          'phone': '0909-9989989'
+        }
+      ]
+    }
+  },
+  computed: {
+    // checkSrc(src){
+    // 	if (src!='') {
+    // 		return src
+    // 	}else {
+    // 		return this.placeholderPhoto
+    // 	}
+    // }
+  },
+  methods: {
+    sendMsg() {
+      if (this.val.length <= 0) {
+        console.log('请输入内容……')
+        return
+      }
+      console.log(this.val)
+      this.chatRecords.push({
+        'user': 'MyName',
+        'photo': '',
+        'cont': this.val
+      })
+      this.val = ''
+    },
+    checkSrc(src) {
+      console.log(src)
+      if (src != '') {
+        return src
+      }else {
+        return this.placeholderPhoto
+      }
+    }
+  }
+}
+
 </script>
 <style scoped="" lang="scss">
 	$w: 15px;

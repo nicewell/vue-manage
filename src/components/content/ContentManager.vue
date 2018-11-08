@@ -40,64 +40,64 @@
 	</div>
 </template>
 <script>
-	import Pagination from '../Pagination'
+import Pagination from '../Pagination'
 
-	export default{
-		name:'ContManager',
-		components:{
-			Pagination
-		},
-		data(){
-			return{
-				pages:{
-					active:1,
-					total:5
-				},
-				articles:[
-					{
-						'id':1,
-						'title':'产品经理常犯的7大错误，你造吗？',
-						'url':'',
-						'author':'白垩纪',
-						'date':'2017-06-06'
-					},
-					{
-						'id':2,
-						'title':'产品经理常犯的7大错误，你造吗？',
-						'url':'',
-						'author':'白垩纪',
-						'date':'2017-06-06'
-					},
-					{
-						'id':3,
-						'title':'产品经理常犯的7大错误，你造吗？',
-						'url':'',
-						'author':'白垩纪',
-						'date':'2017-06-06'
-					}
-				]
-			}
-		},
-		methods:{
-			del(id){
-				this.articles.forEach((item, i) => {
-					if (id==item.id) {
-						console.log(id);
-						this.articles.splice(i, 1);
-						return;
-					}
-				});
-			},
-			edit(id){
-				console.log(id);
-			}
-		},
-		watch:{
-			'pages.active':function(val,oldVal){
-				console.log(val,oldVal);
-			}
-		}
-	}
+export default {
+  name: 'ContManager',
+  components: {
+  Pagination},
+  data() {
+    return {
+      pages: {
+        active: 1,
+        total: 5
+      },
+      articles: [
+        {
+          'id': 1,
+          'title': '产品经理常犯的7大错误，你造吗？',
+          'url': '',
+          'author': '白垩纪',
+          'date': '2017-06-06'
+        },
+        {
+          'id': 2,
+          'title': '产品经理常犯的7大错误，你造吗？',
+          'url': '',
+          'author': '白垩纪',
+          'date': '2017-06-06'
+        },
+        {
+          'id': 3,
+          'title': '产品经理常犯的7大错误，你造吗？',
+          'url': '',
+          'author': '白垩纪',
+          'date': '2017-06-06'
+        }
+      ]
+    }
+  },
+  methods: {
+    del(id) {
+      this.articles.forEach((item, i) => {
+        if (id == item.id) {
+          console.log(id)
+          this.articles.splice(i, 1)
+          return
+        }
+      })
+    },
+    edit(id) {
+      console.log(id)
+    }
+  },
+  watch: {
+    'pages.active': function (val, oldVal) {
+      console.log(val, oldVal)
+    }
+  }
+}
+
 </script>
 <style scoped="" lang="scss">
 	.cont-manager{

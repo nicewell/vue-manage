@@ -38,77 +38,77 @@
 	</div>
 </template>
 <script>
-	import Pagination from '../Pagination'
-	export default{
-		name:'UserManager',
-		components:{
-			Pagination
-		},
-		data(){
-			return{
-				pages:{
-					active:1,
-					total:3
-				},
-				users:[
-					{
-						'id':1,
-						'name':'张三',
-						'email':'zhangsan@gmail.com',
-						'lock': false
-					},
-					{
-						'id':2,
-						'name':'laowang',
-						'email':'laowang@gmail.com',
-						'lock': true
-					},
-					{
-						'id':3,
-						'name':'玄武',
-						'email':'xuanwu@gmail.com',
-						'lock': false
-					}
-				]
-			}
-		},
-		computed:{
-			initLock(lock){
-				// console.log('lock:'+lock);
-				// if (lock) {
-				// 	return '解锁';
-				// }else {
-				// 	return '锁定';
-				// }
-				return '锁定';
-			}
-		},
-		methods:{
-			toggleLock(m){
-				this.users[m].lock = !this.users[m].lock;
-			},
-			initLockTxt(lock){
-				if (lock) {
-					return '解锁';
-				}else {
-					return '锁定';
-				}
-			},
-			delUser(index){
-				let data = this.users;
-				if (data[index].lock) {
-					alert('已锁定用户,禁止直接删除！');
-					return;
-				}
-				data.splice(index,1);
-			}
-		},
-		watch:{
-			'pages.active':function(val,oldVal){
-				console.log(val,oldVal);
-			}
-		}
-	}
+import Pagination from '../Pagination'
+export default {
+  name: 'UserManager',
+  components: {
+  Pagination},
+  data() {
+    return {
+      pages: {
+        active: 1,
+        total: 3
+      },
+      users: [
+        {
+          'id': 1,
+          'name': '张三',
+          'email': 'zhangsan@gmail.com',
+          'lock': false
+        },
+        {
+          'id': 2,
+          'name': 'laowang',
+          'email': 'laowang@gmail.com',
+          'lock': true
+        },
+        {
+          'id': 3,
+          'name': '玄武',
+          'email': 'xuanwu@gmail.com',
+          'lock': false
+        }
+      ]
+    }
+  },
+  computed: {
+    initLock(lock) {
+      // console.log('lock:'+lock)
+      // if (lock) {
+      // 	return '解锁'
+      // }else {
+      // 	return '锁定'
+      // }
+      return '锁定'
+    }
+  },
+  methods: {
+    toggleLock(m) {
+      this.users[m].lock = !this.users[m].lock
+    },
+    initLockTxt(lock) {
+      if (lock) {
+        return '解锁'
+      }else {
+        return '锁定'
+      }
+    },
+    delUser(index) {
+      let data = this.users
+      if (data[index].lock) {
+        alert('已锁定用户,禁止直接删除！')
+        return
+      }
+      data.splice(index, 1)
+    }
+  },
+  watch: {
+    'pages.active': function (val, oldVal) {
+      console.log(val, oldVal)
+    }
+  }
+}
+
 </script>
 <style scoped="" lang="scss">
 	.user-manager{
