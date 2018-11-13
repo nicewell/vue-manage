@@ -79,7 +79,7 @@ export default {
   watch: {
     'series': {
       deep: true,
-      handler: function (val, oldVal) {
+      handler(val, oldVal) {
         this.initChart()
       }
     }

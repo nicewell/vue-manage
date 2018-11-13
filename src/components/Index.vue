@@ -59,45 +59,48 @@ export default {
           seasonid: 'KPL2018S1'
         }
       })
-        .then(res => {
-          // console.log(res.data.data)
-          callback && callback(res.data.data)
-        })
-        .catch(error => {
-          console.log(error)
-        })
+      .then(res => {
+        // console.log(res.data.data)
+        callback && callback(res.data.data)
+      })
+      .catch(error => {
+        console.log(error)
+      })
     },
     initWeb() {
       this.getData(data => {
         let arr = data.splice(0, 4)
-        arr.forEach((item, i) => {
-          this.countData.push({
-            'tag': item.id,
+        let _arr = arr.map((item, i) => {
+          return {
+            'tag': item.playerid,
             'tNum': item.count,
             'yNum': item.playername
-          })
+          }
         })
+        this.countData = _arr
       })
     },
     initHot() {
       this.getData(data => {
         let arr = data.splice(0, 5)
-        arr.forEach((item, i) => {
+        let _arr = arr.map((item, i) => {
           let step = -24 * 60 * 60 * 1000 * (i + 1)
-          this.news.push({
+          return {
             'url': item.logo,
-            'des': item.seasonid + '战队' + item.playername + ',累计' + item.count + '场赛事',
+            'des': `${item.seasonid} 战队 ${item.playername} ,累计 ${item.count} 场赛事`,
             'date': new Date().getTime() + step
-          })
+          }
         })
+        this.news = _arr
       })
     },
     initChartData() {
       this.getData(data => {
         let arr = data.splice(0, 7)
-        let arrPC = [],arrM = []
+        let arrPC = []
+        let arrM = []
         arr.forEach((item, i) => {
-          let num = Math.floor(item.id / item.position)
+          let num = Math.floor(Number(item.playerid) / Number(item.position))
           arrPC.push(num)
           arrM.push(Math.floor(num * this.getRan(0.6, 0.9)))
         })
@@ -115,8 +118,7 @@ export default {
       })
     },
     getNews() {
-			this
-			.$axios.get('/news', {
+			this.$axios.get('/news', {
         params: {}
       })
 			.then(res => {
