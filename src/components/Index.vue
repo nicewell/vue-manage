@@ -53,7 +53,7 @@ export default {
   },
   methods: {
     getData(callback) {
-      this.$axios.get('http://api.tgatv.qq.com/app/match/getPlayerGloryRank', {
+      this.$axios.get('api/getPlayerGloryRank', {
         params: {
           appid: '10005',
           seasonid: 'KPL2018S1'
@@ -118,6 +118,7 @@ export default {
       })
     },
     getNews() {
+      // mock
 			this.$axios.get('/news', {
         params: {}
       })

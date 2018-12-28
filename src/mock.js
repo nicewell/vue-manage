@@ -19,5 +19,5 @@ const produceNewsData = function () {
   }
 }
 
-// Mock.mock( url, post/get , 返回的数据)；
+// Mock.mock(url, post/get, 返回的数据)；
 Mock.mock('/news', 'get', produceNewsData)
