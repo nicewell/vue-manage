@@ -9,6 +9,7 @@
 1. 安装：`cnpm i -D sass-loader style-loader css-loader node-sass`
 2. 配置：build下的webpack.base.conf.js
 ```js
+// 之后某个vue-cli版本之后可以不用手动配了
 {
   test: /\.scss$/,
   loaders: ["style-loader", "css-loader", "sass-loader"]
