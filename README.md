@@ -8,14 +8,14 @@
 ### [sass](https://www.sass.hk/docs/)
 1. 安装：`cnpm i -D sass-loader style-loader css-loader node-sass`
 2. 配置：build下的webpack.base.conf.js
-```
+```js
 {
-    test: /\.scss$/,
-    loaders: ["style-loader", "css-loader", "sass-loader"]
+  test: /\.scss$/,
+  loaders: ["style-loader", "css-loader", "sass-loader"]
 },
 ```
 3. 应用
-```
+```html
 <style scoped="" lang="scss">
 .txt{
   .info{
@@ -29,19 +29,19 @@
 
 ### [bootstarp](https://v3.bootcss.com/components/)
 1. 直接配置`package.json`
-```
+```js
 "bootstrap": "^3.3.4",
 "jquery": "^3.3.1",
 ```
 2. `cnpm install`
 3. main.js 导入
-```
+```js
 import 'jquery/dist/jquery.min.js'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.min.js'
 ```
 4. 配置`webpack.base.conf.js`
-```
+```js
 const webpack = require('webpack')
 plugins: [
   new webpack.ProvidePlugin({
@@ -52,24 +52,24 @@ plugins: [
 ],
 ```
 5. 测试效果
-```
+```html
 <button type="button" class="btn btn-default">button</button>
 ```
 
 
 ### [Highcharts](https://api.hcharts.cn/highcharts)
 1. 安装`vue-highcharts`，`highcharts`
-```
+```js
 npm install --save highcharts
 npm install --save vue-highcharts
 ```
 2. main.js页面引入Vue-hightcharts
-```
+```js
 import VueHighcharts from 'vue-highcharts'
 Vue.use(VueHighcharts)
 ```
 3. 在需要渲染的页面引入使用
-```
+```js
 // var HighCharts = require('highcharts')
 import HighCharts from 'highcharts'
 ```
@@ -82,14 +82,14 @@ import HighCharts from 'highcharts'
 
 ### [axios](https://github.com/axios/axios)
 1. 安装引入
-```
+```js
 npm install axios --save
 // main.js
 import axios from 'axios'
 Vue.prototype.$axios = axios
 ```
 2. 处理跨域
-```
+```js
 // config/index.js
 proxyTable: {
   '/api': {
@@ -105,11 +105,11 @@ proxyTable: {
 
 ### [Mockjs](http://mockjs.com)
 1. 安装
-```
+```bash
 npm install mockjs --save-dev
 ```
 2. 引入配置
-```
+```js
 // src下新建mock.js并引用与配置数据
 import Mock from 'mockjs'
 // 获取 mock.Random 对象
@@ -136,7 +136,7 @@ const produceNewsData = function() {
 Mock.mock('news', 'get', produceNewsData);
 ```
 3. 发起请求响应数据[配置路径需要匹配如：`news`]
-```
+```js
 mounted(){
   this.$axios.get('news', {
       params: {}
@@ -172,13 +172,13 @@ vuex进行状态管理
 
 #### 注意
 - clone下来之后`cnpm install`
-```
+```bash
 at Error (native)
 npminstall version: 2.2.1
 npminstall args: C:\Program Files\nodejs\node.exe C:\Users\duang\AppData\Roaming\npm\node_modules\cnpm\node_modules\npminstall\bin\install.js --china --userconfig=C:\Users\duang\.cnpmrc --disturl=https://npm.taobao.org/mirrors/node --registry=https://registry.npm.taobao.org
 ```
 - 解决方案，权限
-```
+```bash
 点击开始-------右键命令提示符cmd--------以管理员身份运行--------cd进入到项目----执行npm install | cnpm install
 ```
 
@@ -190,7 +190,7 @@ npminstall args: C:\Program Files\nodejs\node.exe C:\Users\duang\AppData\Roaming
 
 ### es6
 - 箭头函数
-```
+```js
 let show = (str) => {return 'str:'+str;}
 /**
  * 一个参数括号可以省略
@@ -281,7 +281,7 @@ console.log(r(5));
 > `--save-dev`表示添加一个“开发依赖”,`--save`表示添加运行依赖
 - 
 - arr
-```
+```js
 // 将伪数组转换成真数组
 var lis = document.querySelectorAll('li');
 // 伪数组,本质是对象,但是拥有length和通过下标可以索引到的特性
