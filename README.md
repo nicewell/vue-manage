@@ -256,8 +256,6 @@ const r = (r)=>({
 console.log(r(5));
 ```
 
-- let为解决for
-- const定义常量，可以用来定义函数，函数的参数会变，但是函数基本不会变
 - 字符串操作符
   - `str.repeat(10)`
   - `str.startWith('ossweb-img')`
