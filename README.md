@@ -3,7 +3,28 @@
 
 > Vue.js project
 
+### eslint规则配置
+- `.exlintrc.js`
+```js
+// rules
+'space-before-function-paren':0
+```
 
+### webpack配置
+- `webpack.base.conf.js`
+```js
+// resolve
+// 别名配置
+resolve: {
+  extensions: ['.js', '.vue', '.json'],
+  alias: {
+    'vue$': 'vue/dist/vue.esm.js',
+    '@': resolve('src'),
+    'assets': resolve('src/assets'),
+    'components': resolve('src/components')
+  }
+},
+```
 
 ### [sass](https://www.sass.hk/docs/)
 1. 安装：`cnpm i -D sass-loader style-loader css-loader node-sass`
@@ -25,7 +46,7 @@
 }
 </style>
 ```
-4. 关闭重启：`ctrl + c`,`ctrl + d`重新运行`npm run dev`
+4. 重启：`ctrl + c`,重新运行`npm run dev`
 
 
 ### [bootstarp](https://v3.bootcss.com/components/)
@@ -152,6 +173,13 @@ mounted(){
 ```
 4. 
 
+### 数据库
+
+
+#### MongoDB
+> 文档型非关系型数据库
+
+
 ### [localStorage](https://developer.mozilla.org/zh-CN/docs/Web/API/Window/localStorage)
 - 存取字符串数组
 
@@ -238,7 +266,11 @@ console.log(r(5));
 - 数组实例的 entries() ， keys() 和 values()
 > ES6 提供三个新的方法 —— entries()，keys()和values() —— 用于遍历数组。它们都返回一个遍历器对象，可以用for...of循环进行遍历，唯一的区别是keys()是对键名的遍历、values()是对键值的遍历，entries()是对键值对的遍历
 
-- 
+- 字符串新增
+```js
+// 补零的时候
+new Date().getDate().toString().padStart(2, '0')
+```
 
 
 

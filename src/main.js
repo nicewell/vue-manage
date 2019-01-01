@@ -18,6 +18,7 @@ import mock from './mock.js'
 
 Vue.config.productionTip = false
 
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
@@ -30,3 +31,11 @@ new Vue({
 Vue.filter('getYMD', function (input) {
   return input.split(' ')[0]
 })
+
+// router.beforeEach((to, from, next) => {
+//   if (to) {
+//     console.log(to)
+//   } else {
+//     next()
+//   }
+// })

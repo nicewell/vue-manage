@@ -21,7 +21,8 @@ import UserManager from './user/UserManager'
 export default {
   name: 'Layout',
   components: {
-  UserManager},
+    UserManager
+  },
   data() {
     return {
       // 

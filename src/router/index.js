@@ -1,6 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
+import Duang from '@/components/Duang'
+
+import Login from '@/components/Login'
 import Index from '@/components/Index'
 import Home from '@/components/Home'
 
@@ -19,9 +22,19 @@ Vue.use(Router)
 export default new Router({
   routes: [
     {
+      path: '/duang',
+      name: 'Duang',
+      component: Duang
+    },
+    {
       path: '/',
       name: 'Index',
       component: Index
+    },
+    {
+      path: '/login',
+      name: 'Login',
+      component: Login
     },
     {
       path: '/content',
