@@ -18,13 +18,12 @@ import mock from './mock.js'
 
 Vue.config.productionTip = false
 
-
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
   router,
   Store,
-  components: { App },
+  components: { App},
   template: '<App/>'
 })
 

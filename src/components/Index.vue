@@ -1,38 +1,39 @@
 <template>
-	<div class="layout">
-		<div class="container">
-			<Warning></Warning>
-			<div class="row">
-				<div class="col-md-6">
-					<WebCount :countData="countData"></WebCount>
-				</div>
-				<div class="col-md-6">
-					<NewsHot :news="news"></NewsHot>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-6">
-					<TodayCount :series="series"></TodayCount>
-				</div>
-				<div class="col-md-6">
-					<ServerStatus></ServerStatus>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<MsgBoard></MsgBoard>
-				</div>
-			</div>
-		</div>
-	</div>
+  <div class="layout">
+    <div class="container">
+      <Warning></Warning>
+      <div class="row">
+        <div class="col-md-6">
+          <WebCount :countData="countData"></WebCount>
+        </div>
+        <div class="col-md-6">
+          <NewsHot :news="news"></NewsHot>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <TodayCount :series="series"></TodayCount>
+        </div>
+        <div class="col-md-6">
+          <ServerStatus></ServerStatus>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <MsgBoard></MsgBoard>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 <script>
-import Warning from './index/Warning'
-import WebCount from './index/WebCount'
-import NewsHot from './index/NewsHot'
-import TodayCount from './index/TodayCount'
-import ServerStatus from './index/ServerStatus'
-import MsgBoard from './index/MsgBoard'
+import Warning from '@/components/index/Warning'
+import WebCount from '@/components/index/WebCount'
+import NewsHot from '@/components/index/NewsHot'
+import TodayCount from '@/components/index/TodayCount'
+import ServerStatus from '@/components/index/ServerStatus'
+import MsgBoard from '@/components/index/MsgBoard'
+import { getPlayerGloryRank } from '@/api/api'
 
 export default {
   name: 'Container',
@@ -42,9 +43,9 @@ export default {
     NewsHot,
     TodayCount,
     ServerStatus,
-		MsgBoard
-	},
-  data() {
+    MsgBoard
+  },
+  data () {
     return {
       countData: [],
       news: [],
@@ -52,22 +53,11 @@ export default {
     }
   },
   methods: {
-    getData(callback) {
-      this.$axios.get('api/getPlayerGloryRank', {
-        params: {
-          appid: '10005',
-          seasonid: 'KPL2018S1'
-        }
-      })
-      .then(res => {
-        // console.log(res.data.data)
-        callback && callback(res.data.data)
-      })
-      .catch(error => {
-        console.log(error)
-      })
+    async getData (callback) {
+      let data = await getPlayerGloryRank()
+      callback && callback(data)
     },
-    initWeb() {
+    initWeb () {
       this.getData(data => {
         let arr = data.splice(0, 4)
         let _arr = arr.map((item, i) => {
@@ -80,7 +70,7 @@ export default {
         this.countData = _arr
       })
     },
-    initHot() {
+    initHot () {
       this.getData(data => {
         let arr = data.splice(0, 5)
         let _arr = arr.map((item, i) => {
@@ -94,7 +84,7 @@ export default {
         this.news = _arr
       })
     },
-    initChartData() {
+    initChartData () {
       this.getData(data => {
         let arr = data.splice(0, 7)
         let arrPC = []
@@ -117,23 +107,23 @@ export default {
         this.series = _arr
       })
     },
-    getNews() {
+    getNews () {
       // mock
-			this.$axios.get('/news', {
+      this.$axios.get('/news', {
         params: {}
       })
-			.then(res => {
-				console.log(res)
-			})
-			.catch(error => {
-				console.log(error)
-			})
+      .then(res => {
+        console.log(res)
+      })
+      .catch(error => {
+        console.log(error)
+      })
     },
-    getRan(min, max) {
+    getRan (min, max) {
       return Math.round((max - min) * Math.random()) + min
     }
   },
-  mounted() {
+  mounted () {
     this.initWeb()
     this.initHot()
     this.initChartData()
@@ -143,8 +133,8 @@ export default {
 
 </script>
 <style lang="scss" scoped>
-	*{
-		-webkit-tap-highlight-color:rgba(0,0,0,0);
-		outline: none;
-	}
+* {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  outline: none;
+}
 </style>
