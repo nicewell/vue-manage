@@ -1,39 +1,50 @@
 <template>
-	<div class="tags">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12">
-					<div class="page-header">
-						<h4>标签管理</h4>
-					</div>
-				</div>
-				<div class="col-md-12">
-					<form action="" method="post" v-on:submit.prevent>
-						<div class="col-md-10">
-							<input type="text" name="" id="" class="form-control" placeholder="请输入需要添加的标签" v-model="placeHolder" @keyup.enter="addTag()" @keyup.ctrl.enter="clear">
-						</div>
-						<div class="col-md-2">
-							<button type="button" class="btn btn-default" @click="addTag()">添加</button>
-						</div>
-					</form>
-				</div>
-				<div class="col-md-12">
-					<template v-for="(item,index) in tags">
-						<div class="alert alert-info alert-dismissible pull-left">
-							<a href="javascript:;" class="close" @click="delTag(item.id)"><span>&times;</span></a>
-							<strong>{{item.tag}}</strong>
-						</div>
-					</template>
-				</div>
-			</div>
-		</div>
-	</div>
+  <div class="tags">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="page-header">
+            <h4>标签管理</h4>
+          </div>
+        </div>
+        <div class="col-md-12">
+          <form action method="post" v-on:submit.prevent>
+            <div class="col-md-10">
+              <input
+                type="text"
+                name
+                id
+                class="form-control"
+                placeholder="请输入需要添加的标签"
+                v-model="placeHolder"
+                @keyup.enter="addTag()"
+                @keyup.ctrl.enter="clear"
+              >
+            </div>
+            <div class="col-md-2">
+              <button type="button" class="btn btn-default" @click="addTag()">添加</button>
+            </div>
+          </form>
+        </div>
+        <div class="col-md-12">
+          <template v-for="(item, index) in tags">
+            <div class="alert alert-info alert-dismissible pull-left">
+              <a href="javascript:;" class="close" @click="delTag(item.id)">
+                <span>&times;</span>
+              </a>
+              <strong>{{item.tag}}</strong>
+            </div>
+          </template>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 <script>
 
 export default {
   name: 'Tags',
-  data() {
+  data () {
     return {
       placeHolder: '',
       id: 1,
@@ -54,7 +65,7 @@ export default {
     }
   },
   methods: {
-    delTag(id) {
+    delTag (id) {
       let index
       this.tags.forEach((item, i) => {
         if (item.id == id) {
@@ -64,7 +75,7 @@ export default {
       this.tags.splice(index, 1)
       this.setItems()
     },
-    addTag() {
+    addTag () {
       if (this.placeHolder.length <= 0) {
         return
       }
@@ -75,23 +86,23 @@ export default {
       this.placeHolder = ''
       this.setItems()
     },
-    initId() {
+    initId () {
       this.id = this.tags[this.tags.length - 1].id
     },
-    getItems() {
+    getItems () {
       // let arr = JSON.parse(localStorage.getItem('tags_key')||'[]')
       let arr = JSON.parse(localStorage.getItem('tags_key') || JSON.stringify(this.tags))
       this.tags = arr
     },
-    setItems() {
+    setItems () {
       localStorage.setItem('tags_key', JSON.stringify(this.tags))
     },
-    clear() {
+    clear () {
       localStorage.clear()
       this.tags.splice(0, this.tags.length)
     }
   },
-  created() {
+  created () {
     this.getItems()
     this.initId()
   }
@@ -99,22 +110,22 @@ export default {
 
 </script>
 <style scoped="" lang="scss">
-	.tags{
-		.page-header{
-			margin: 0;
-		}
-		form{
-			display: block;
-			margin: 0 -15px 20px;
-			overflow: hidden;
-			&>div{
-				margin-top: 20px;
-			}
-		}
-		.alert{
-			& + .alert{
-				margin-left: 15px;
-			}
-		}
-	}
+.tags {
+  .page-header {
+    margin: 0;
+  }
+  form {
+    display: block;
+    margin: 0 -15px 20px;
+    overflow: hidden;
+    & > div {
+      margin-top: 20px;
+    }
+  }
+  .alert {
+    & + .alert {
+      margin-left: 15px;
+    }
+  }
+}
 </style>

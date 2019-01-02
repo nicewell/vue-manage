@@ -53,12 +53,9 @@ export default {
     }
   },
   methods: {
-    async getData (callback) {
-      let data = await getPlayerGloryRank()
-      callback && callback(data)
-    },
-    initWeb () {
-      this.getData(data => {
+    async initWeb () {
+      try {
+        let data = await getPlayerGloryRank()
         let arr = data.splice(0, 4)
         let _arr = arr.map((item, i) => {
           return {
@@ -68,56 +65,56 @@ export default {
           }
         })
         this.countData = _arr
-      })
+      } catch (error) {
+        console.log(`${error} 数据获取失败`)
+      }
     },
-    initHot () {
-      this.getData(data => {
-        let arr = data.splice(0, 5)
-        let _arr = arr.map((item, i) => {
-          let step = -24 * 60 * 60 * 1000 * (i + 1)
-          return {
-            'url': item.logo,
-            'des': `${item.seasonid} 战队 ${item.playername} ,累计 ${item.count} 场赛事`,
-            'date': new Date().getTime() + step
-          }
-        })
-        this.news = _arr
+    async initHot () {
+      let data = await getPlayerGloryRank()
+      let arr = data.splice(0, 5)
+      let _arr = arr.map((item, i) => {
+        let step = -24 * 60 * 60 * 1000 * (i + 1)
+        return {
+          'url': item.logo,
+          'des': `${item.seasonid} 战队 ${item.playername} ,累计 ${item.count} 场赛事`,
+          'date': new Date().getTime() + step
+        }
       })
+      this.news = _arr
     },
-    initChartData () {
-      this.getData(data => {
-        let arr = data.splice(0, 7)
-        let arrPC = []
-        let arrM = []
-        arr.forEach((item, i) => {
-          let num = Math.floor(Number(item.playerid) / Number(item.position))
-          arrPC.push(num)
-          arrM.push(Math.floor(num * this.getRan(0.6, 0.9)))
-        })
-        let _arr = [
-          {
-            name: 'PC端',
-            data: arrPC
-          },
-          {
-            name: '移动端',
-            data: arrM
-          }
-        ]
-        this.series = _arr
+    async initChartData () {
+      let data = await getPlayerGloryRank()
+      let arr = data.splice(0, 7)
+      let arrPC = []
+      let arrM = []
+      arr.forEach((item, i) => {
+        let num = Math.floor(Number(item.playerid) / Number(item.position))
+        arrPC.push(num)
+        arrM.push(Math.floor(num * this.getRan(0.6, 0.9)))
       })
+      let _arr = [
+        {
+          name: 'PC端',
+          data: arrPC
+        },
+        {
+          name: '移动端',
+          data: arrM
+        }
+      ]
+      this.series = _arr
     },
     getNews () {
       // mock
       this.$axios.get('/news', {
         params: {}
       })
-      .then(res => {
-        console.log(res)
-      })
-      .catch(error => {
-        console.log(error)
-      })
+        .then(res => {
+          console.log(res)
+        })
+        .catch(error => {
+          console.log(error)
+        })
     },
     getRan (min, max) {
       return Math.round((max - min) * Math.random()) + min

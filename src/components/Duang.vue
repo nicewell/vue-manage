@@ -1,5 +1,5 @@
 <template>
-	<div class="wrap">
+  <div class="wrap">
     <div class="box1" ref="box1">1</div>
     <div class="box2" ref="box2">2</div>
   </div>
@@ -7,7 +7,7 @@
 <script>
 export default {
   name: 'Duang',
-  data() {
+  data () {
     return {
       // 
     }
@@ -18,10 +18,10 @@ export default {
   methods: {
     // 
   },
-  created() {
+  created () {
     // 
   },
-  mounted(){
+  mounted () {
     console.log(this.$refs.box1)
     console.log(this.$refs.box2)
   }
