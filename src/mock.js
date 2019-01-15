@@ -2,7 +2,7 @@ import Mock from 'mockjs'
 // 获取 mock.Random 对象
 const Random = Mock.Random
 // mock一组数据
-const produceNewsData = function () {
+const produceNewsData = () => {
   let articles = []
   for (let i = 0; i < 5; i++) {
     let newArticleObject = {
@@ -15,7 +15,7 @@ const produceNewsData = function () {
   }
 
   return {
-    articles: articles
+    articles
   }
 }
 

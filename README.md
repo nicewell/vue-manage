@@ -173,6 +173,12 @@ mounted(){
 ```
 4. 
 
+### 重构优化
+- API 提取
+- 拦截器封装
+  - [博文参见](https://juejin.im/post/5bfb63e86fb9a049c30ae96d)
+- 
+
 ### 数据库
 
 
