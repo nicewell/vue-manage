@@ -103,6 +103,10 @@ import HighCharts from 'highcharts'
 - 登录token,用户信息,一些全局个人偏好设置
 
 ### [axios](https://github.com/axios/axios)
+#### 文档注意
+- Axios发送请求时params和data的区别
+  - params是添加到url的请求字符串中的，用于get请求
+  - data是添加到请求体（body）中的，用于post请求
 1. 安装引入
 ```js
 npm install axios --save
@@ -174,10 +178,11 @@ mounted(){
 4. 
 
 ### 重构优化
-- API 提取
 - 拦截器封装
+  - [博文参见](https://juejin.im/post/5b55c118f265da0f6f1aa354)
   - [博文参见](https://juejin.im/post/5bfb63e86fb9a049c30ae96d)
-- 
+- API 提取
+- 接口管理
 
 ### 数据库
 
@@ -224,6 +229,24 @@ npminstall args: C:\Program Files\nodejs\node.exe C:\Users\duang\AppData\Roaming
 
 
 ### es6
+- 模块
+  - 方式1
+  ```js
+  // module.js
+  // 导出
+  export default getPlayerGloryRank
+  // 引入
+  import getPlayerGloryRank from '@/api/getPlayerGloryRank'
+  ```
+  - 方式2
+  ```js
+  // module.js
+  // 导出
+  export getPlayerGloryRank1
+  export getPlayerGloryRank2
+  // 引入
+  import {getPlayerGloryRank1, getPlayerGloryRank2} from '@/api/getPlayerGloryRank'
+  ```
 - 箭头函数
 ```js
 let show = (str) => {return 'str:'+str;}

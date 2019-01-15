@@ -33,7 +33,7 @@ import NewsHot from '@/components/index/NewsHot'
 import TodayCount from '@/components/index/TodayCount'
 import ServerStatus from '@/components/index/ServerStatus'
 import MsgBoard from '@/components/index/MsgBoard'
-import { getPlayerGloryRank } from '@/api/api'
+import getPlayerGloryRank from '@/api/getPlayerGloryRank'
 
 export default {
   name: 'Container',
@@ -56,6 +56,9 @@ export default {
     async initWeb () {
       try {
         let data = await getPlayerGloryRank()
+        if (!Array.isArray(data)) {
+          return
+        }
         let arr = data.splice(0, 4)
         let _arr = arr.map((item, i) => {
           return {
@@ -71,6 +74,9 @@ export default {
     },
     async initHot () {
       let data = await getPlayerGloryRank()
+      if (!Array.isArray(data)) {
+        return
+      }
       let arr = data.splice(0, 5)
       let _arr = arr.map((item, i) => {
         let step = -24 * 60 * 60 * 1000 * (i + 1)
@@ -84,6 +90,9 @@ export default {
     },
     async initChartData () {
       let data = await getPlayerGloryRank()
+      if (!Array.isArray(data)) {
+        return
+      }
       let arr = data.splice(0, 7)
       let arrPC = []
       let arrM = []
