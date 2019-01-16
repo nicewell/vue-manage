@@ -1,6 +1,6 @@
 import server from '@/api/server'
 /**
- * 获取数据选手数据
+ * 获取所有MPV选手数据
  */
 const getPlayerGloryRank = async () => {
   let data = await server({

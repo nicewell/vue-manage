@@ -1,18 +1,19 @@
 <template>
-	<div class="today-count">
-		<div class="panel panel-default">
-			<div class="panel-heading">今日统计</div>
-			<div class="panel-body">
-				<div class="chart" :id="chartOps.id"></div>
-			</div>
-		</div>
-	</div>
+  <div class="today-count">
+    <div class="panel panel-default">
+      <div class="panel-heading">今日统计</div>
+      <div class="panel-body">
+        <div class="chart" :id="chartOps.id"></div>
+      </div>
+    </div>
+  </div>
 </template>
 <script>
+import { getRandom } from '@/utils/utils'
 import HighCharts from 'highcharts'
 export default {
   name: 'TodayCount',
-  data() {
+  data () {
     return {
       chartOps: {
         id: 'chart',
@@ -20,7 +21,7 @@ export default {
           chart: {
             type: 'spline',
             height: 280,
-						// margin: [0, 0, 0, 0]
+            // margin: [0, 0, 0, 0]
           },
           credits: {
             enabled: false
@@ -49,15 +50,7 @@ export default {
             }
           },
           // 两条数据
-          series: [{
-            name: 'PC端',
-            data: [314, 455, 755, 814, 999, 905, 1000]
-						// data: []
-          }, {
-            name: '移动端',
-            data: [114, 255, 455, 414, 599, 605, 500]
-						// data: []
-          }]
+          series: this.series
         }
       }
     }
@@ -67,19 +60,44 @@ export default {
       type: Array
     }
   },
-  mounted() {
+  mounted () {
     this.initChart()
   },
   methods: {
-    initChart() {
-      this.$set(this.chartOps.option, 'series', this.series)
+    initChart () {
+      let series = this.formatData([...this.series])
+      this.$set(this.chartOps.option, 'series', series)
       HighCharts.chart(this.chartOps.id, this.chartOps.option)
+    },
+    formatData (dataArr) {
+      if (!dataArr || !Array.isArray(dataArr)) {
+        return
+      }
+      let arr = dataArr.splice(0, 7)
+      let arrPC = []
+      let arrM = []
+      arr.forEach((item, i) => {
+        let num = Math.floor(Number(item.playerid) / Number(item.position))
+        arrPC.push(num)
+        arrM.push(Math.floor(num * getRandom(0.6, 0.9)))
+      })
+      let _arr = [
+        {
+          name: 'PC端',
+          data: arrPC
+        },
+        {
+          name: '移动端',
+          data: arrM
+        }
+      ]
+      return _arr
     }
   },
   watch: {
     'series': {
       deep: true,
-      handler(val, oldVal) {
+      handler (val, oldVal) {
         this.initChart()
       }
     }
@@ -88,5 +106,5 @@ export default {
 
 </script>
 <style scoped="" lang="scss">
-	// 
+//
 </style>

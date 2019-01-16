@@ -101,6 +101,9 @@ import HighCharts from 'highcharts'
 ### [vuex](https://vuex.vuejs.org/zh/installation.html)
 - 全局状态管理
 - 登录token,用户信息,一些全局个人偏好设置
+- 除此以外vues的应用
+  - [电商网站项目总结：Vuex 带来全新的编程体验](https://juejin.im/post/5c3c911ce51d455231347a7a?utm_source=gold_browser_extension)
+  - [我为什么要用vuex](https://mp.weixin.qq.com/s/rnNFgGKFBajxiB0MyqHJog)
 
 ### [axios](https://github.com/axios/axios)
 #### 文档注意
@@ -183,12 +186,15 @@ mounted(){
   - [博文参见](https://juejin.im/post/5bfb63e86fb9a049c30ae96d)
 - API 提取
 - 接口管理
+#### 重构进行时形成博文
+- [最佳实践](https://github.com/wangyupo/vue-vuex-router)
+- 通过博文记录
+  - 找出不足，当个方面或者多个方面
+  - 给解决方案，思考过程，考虑哪些东西，即设计理念
+- 记录中再思考(输出过程中)
+- 来回优化
+- 进而进阶
 
-### 数据库
-
-
-#### MongoDB
-> 文档型非关系型数据库
 
 
 ### [localStorage](https://developer.mozilla.org/zh-CN/docs/Web/API/Window/localStorage)
@@ -366,3 +372,38 @@ console.log(arr instanceof Array);// true
   - 通过Object.defineProperty()给vm添加与data对象的属性对应的属性描述符
   - 所有添加的属性都包含getter/setter
   - getter/setter内部去操作data中对应的属性数据
+
+### 踩坑-最佳实践
+- [vue 开发中遇到的问题汇总-踩坑指南](https://segmentfault.com/a/1190000010794839)
+```
+1. props单向绑定
+vue中的props是单向绑定的，父组件的属性变化时会传递给子组件，子组件内部不应改变props的值，否则控制台会给出警告。
+但如果props的类型为数组或者对象时，在子组件内部改变props的值控制台不会警告。因为数组或对象是地址引用，vue不会检测到props发生改变。所以有的情况需要在子组件内部改变父组件的值，可以将属性定义为数组或者对象类型传入。
+但官方不建议在子组件内改变父组件的值，因为这违反了vue中props单向绑定的思想。
+
+2. 给对象赋值
+由1可以引申出，地址引用类型的数据，例如对象obj ={a:1},如果想要修改obj中的a属性，通过obj.a = 2这样赋值，页面不会更新，需使用vue.set方法更改才会起作用， Vue.set(this,obj,a,2);
+同样，如果要给obj增加一个新属性，如果该属性未在data中声明，页面也不会刷新。也就是vue文档中声明的“Vue 不能检测到对象属性的添加或删除”，同样需要使用vue.set方法进行赋值才好使。
+
+3. 深拷贝数组或对象
+对象或数组的简单赋值，修改新值也会改变原值。这时我们需要获取原值的深拷贝对象。
+对于对象，可以通过newObj = JSON.parse(JSON.stringfy(obj))实现。
+对于数组，可以通过 newArr = […arr]或者newArr = arr.slice(0)来实现。
+
+6. 引用图片
+图片引用问题。直接把本地图片地址放在src里没问题。但如果把地址提取出来写在data里或者通过method动态给src赋值则引用不到。
+因为放在template模板里会被webpack打包所以可以，而放在data或者动态赋值，图片路径只是一个字符串webpack不会处理所以引用不到。
+解决办法：通过import或者required引入。import src from ‘../../img.png’或者data:{img:require(‘../../img.png’)}
+
+7. 父组件传值
+在子组件使用父组件传入的值时，最好复制出一份props的值，通过data或者computed进行赋值。
+data赋值与computed赋值的区别：
+data赋值：data:{return {aaa: this.aaa}如果是在data中进行赋值，当父组件的aaa值发生改变时，不会在重新赋给子组件中的aaa。
+computed赋值：如果想让子组件跟着父组件修改，需要将赋值操作写在computed中。computed:{aaa(){return this.aaa}
+
+8. 对象数组深度监听
+后端传过来的数组是一个数组对象，页面中绑定对象中某一具体的属性，当该值变化时调用某个函数，自然想到就是watch方法。但如何watch数组对象中某一个具体的属性，显然不可能一个个属性写watch。
+解决办法：
+1.watch整个对象，设置deep为true，当该对象发生改变时，调用处理函数。
+2.将页面中绑定的属性写在computed函数中，watch这个computed中的函数，当对象值改变时会进入computed函数中，进而进入watch函数中，再调用处理函数。
+```

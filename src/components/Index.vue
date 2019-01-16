@@ -4,7 +4,7 @@
       <Warning></Warning>
       <div class="row">
         <div class="col-md-6">
-          <WebCount :countData="countData"></WebCount>
+          <WebCount :counts="counts"></WebCount>
         </div>
         <div class="col-md-6">
           <NewsHot :news="news"></NewsHot>
@@ -47,7 +47,7 @@ export default {
   },
   data () {
     return {
-      countData: [],
+      counts: [],
       news: [],
       series: []
     }
@@ -56,83 +56,36 @@ export default {
     async initWeb () {
       try {
         let data = await getPlayerGloryRank()
-        if (!Array.isArray(data)) {
-          return
-        }
-        let arr = data.splice(0, 4)
-        let _arr = arr.map((item, i) => {
-          return {
-            'tag': item.playerid,
-            'tNum': item.count,
-            'yNum': item.playername
-          }
-        })
-        this.countData = _arr
+        this.counts = data
       } catch (error) {
         console.log(`${error} 数据获取失败`)
       }
     },
     async initHot () {
       let data = await getPlayerGloryRank()
-      if (!Array.isArray(data)) {
-        return
-      }
-      let arr = data.splice(0, 5)
-      let _arr = arr.map((item, i) => {
-        let step = -24 * 60 * 60 * 1000 * (i + 1)
-        return {
-          'url': item.logo,
-          'des': `${item.seasonid} 战队 ${item.playername} ,累计 ${item.count} 场赛事`,
-          'date': new Date().getTime() + step
-        }
-      })
-      this.news = _arr
+      this.news = data
     },
-    async initChartData () {
+    async initChart () {
       let data = await getPlayerGloryRank()
-      if (!Array.isArray(data)) {
-        return
-      }
-      let arr = data.splice(0, 7)
-      let arrPC = []
-      let arrM = []
-      arr.forEach((item, i) => {
-        let num = Math.floor(Number(item.playerid) / Number(item.position))
-        arrPC.push(num)
-        arrM.push(Math.floor(num * this.getRan(0.6, 0.9)))
-      })
-      let _arr = [
-        {
-          name: 'PC端',
-          data: arrPC
-        },
-        {
-          name: '移动端',
-          data: arrM
-        }
-      ]
-      this.series = _arr
+      this.series = data
     },
     getNews () {
       // mock
       this.$axios.get('/news', {
         params: {}
       })
-        .then(res => {
-          console.log(res)
-        })
-        .catch(error => {
-          console.log(error)
-        })
-    },
-    getRan (min, max) {
-      return Math.round((max - min) * Math.random()) + min
+      .then(res => {
+        console.log(res)
+      })
+      .catch(error => {
+        console.log(error)
+      })
     }
   },
   mounted () {
     this.initWeb()
     this.initHot()
-    this.initChartData()
+    this.initChart()
     this.getNews()
   }
 }
