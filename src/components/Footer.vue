@@ -3,8 +3,7 @@
     <div class="container">
       <div class="row">
         <div class="col-md-12">
-          <p>COPYRIGHT © 1998 – 2018 TENCENT. ALL RIGHTS RESERVED.</p>
-          <p>尚谷田园科技有限公司 版权所有</p>
+          <p>© {{getFullYear}} 尚谷田园科技有限公司</p>
         </div>
       </div>
     </div>
@@ -15,7 +14,12 @@ export default {
   name: 'Footer',
   data () {
     return {
-      // 
+      date: ''
+    }
+  },
+  computed: {
+    getFullYear () {
+      return this.date = new Date().getFullYear()
     }
   }
 }

@@ -50,7 +50,7 @@ export default {
       let _arr = arr.map((item, i) => {
         return {
           'tag': item.playerid,
-          'tNum': item.count,
+          'tNum': item.position,
           'yNum': item.playername
         }
       })

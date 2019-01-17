@@ -1,47 +1,58 @@
 <template>
-	<div class="msg-board">
-		<div class="panel panel-default">
-			<div class="panel-heading">团队留言板</div>
-			<div class="panel-body">
-				<div class="col-md-7">
-					<template v-for="(item,index) in chatRecords">
-						<div class="media well">
-							<div class="media-left media-middle">
-								<img class="media-object" :src="checkSrc(item.photo)" :alt="item.user">
-							</div>
-							<div class="media-body">
-								<p class="media-heading">{{item.user}}</p>
-								<p>{{item.cont}}</p>
-							</div>
-						</div>
-					</template>
-				</div>
-				<div class="col-md-5">
-					<form method="post">
-						<div class="form-group">
-							<label for="msg">输入留言内容</label>
-							<textarea class="form-control" id="msg" rows="5" cols="10" placeholder="请输入留言内容" v-model="val"></textarea>
-							<a href="javascript:;" class="btn btn-default" @click="sendMsg">留言</a>
-						</div>
-					</form>
-					<div class="panel panel-default">
-					  <div class="panel-heading">团队联系手册</div>
-					  <div class="panel-body">
-					  	<ul class="list-group">
-					  		<li class="list-group-item" v-for="(item,index) in contacts">{{item.name}}：<span class="glyphicon glyphicon-phone"></span>{{item.phone}}</li>
-					  	</ul>
-					  </div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+  <div class="msg-board">
+    <div class="panel panel-default">
+      <div class="panel-heading">团队留言板</div>
+      <div class="panel-body">
+        <div class="col-md-7">
+          <template>
+            <div class="media well" v-for="(item, index) in chatRecords" :key="index">
+              <div class="media-left media-middle">
+                <img class="media-object" :src="checkSrc(item.photo)" :alt="item.user">
+              </div>
+              <div class="media-body">
+                <p class="media-heading">{{item.user}}</p>
+                <p>{{item.cont}}</p>
+              </div>
+            </div>
+          </template>
+        </div>
+        <div class="col-md-5">
+          <form method="post">
+            <div class="form-group">
+              <label for="msg">输入留言内容</label>
+              <textarea
+                class="form-control"
+                id="msg"
+                rows="5"
+                cols="10"
+                placeholder="请输入留言内容"
+                v-model="val"
+              ></textarea>
+              <a href="javascript:;" class="btn btn-default" @click="sendMsg">留言</a>
+            </div>
+          </form>
+          <div class="panel panel-default">
+            <div class="panel-heading">团队联系手册</div>
+            <div class="panel-body">
+              <ul class="list-group">
+                <li class="list-group-item" v-for="(item, index) in contacts" :key="index">
+                  {{item.name}}：
+                  <span class="glyphicon glyphicon-phone"></span>
+                  {{item.phone}}
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 <script>
 
 export default {
   name: 'MsgBoard',
-  data() {
+  data () {
     return {
       placeholderPhoto: 'https://placehold.it/64x64',
       val: '',
@@ -82,7 +93,7 @@ export default {
     // }
   },
   methods: {
-    sendMsg() {
+    sendMsg () {
       if (this.val.length <= 0) {
         console.log('请输入内容……')
         return
@@ -95,11 +106,11 @@ export default {
       })
       this.val = ''
     },
-    checkSrc(src) {
+    checkSrc (src) {
       console.log(src)
       if (src != '') {
         return src
-      }else {
+      } else {
         return this.placeholderPhoto
       }
     }
@@ -108,32 +119,32 @@ export default {
 
 </script>
 <style scoped="" lang="scss">
-	$w: 15px;
-	textarea{
-		resize: none
-	}
-	.media-heading{
-		opacity: 0.5;
-	}
-	.media-middle{
-		position: relative;
-		width: 64px;
-		height: 64px;
-	}
-	.media-middle img{
-		border-radius: 50%;
-	}
-	.btn-default{
-		margin-top: $w;
-	}
-	.list-group{
-		margin-left: -$w;
-		margin-right: -$w;
-		.list-group-item{
-			border: none;
-		}
-		.glyphicon{
-			margin: 0 5px;
-		}
-	}
+$w: 15px;
+textarea {
+  resize: none;
+}
+.media-heading {
+  opacity: 0.5;
+}
+.media-middle {
+  position: relative;
+  width: 64px;
+  height: 64px;
+}
+.media-middle img {
+  border-radius: 50%;
+}
+.btn-default {
+  margin-top: $w;
+}
+.list-group {
+  margin-left: -$w;
+  margin-right: -$w;
+  .list-group-item {
+    border: none;
+  }
+  .glyphicon {
+    margin: 0 5px;
+  }
+}
 </style>

@@ -34,6 +34,8 @@ import TodayCount from '@/components/index/TodayCount'
 import ServerStatus from '@/components/index/ServerStatus'
 import MsgBoard from '@/components/index/MsgBoard'
 import getPlayerGloryRank from '@/api/getPlayerGloryRank'
+import getPlayerWeekMvp from '../api/getPlayerWeekMvp'
+import getNews from '../api/getNews'
 
 export default {
   name: 'Container',
@@ -55,38 +57,25 @@ export default {
   methods: {
     async initWeb () {
       try {
-        let data = await getPlayerGloryRank()
+        let data = await getPlayerWeekMvp()
         this.counts = data
       } catch (error) {
         console.log(`${error} 数据获取失败`)
       }
     },
-    async initHot () {
-      let data = await getPlayerGloryRank()
-      this.news = data
-    },
     async initChart () {
       let data = await getPlayerGloryRank()
       this.series = data
     },
-    getNews () {
-      // mock
-      this.$axios.get('/news', {
-        params: {}
-      })
-      .then(res => {
-        console.log(res)
-      })
-      .catch(error => {
-        console.log(error)
-      })
+    async initNews () {
+      let news = await getNews()
+      this.news = news
     }
   },
   mounted () {
     this.initWeb()
-    this.initHot()
+    this.initNews()
     this.initChart()
-    this.getNews()
   }
 }
 

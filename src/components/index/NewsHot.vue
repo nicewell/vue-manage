@@ -3,33 +3,47 @@
     <div class="panel panel-default">
       <div class="panel-heading">英雄热榜</div>
       <ul class="list-group">
-        <li class="list-group-item" v-for="(item, index) in formatNews" :key="index">
-          <a :href="item.url" target="_blank">
-            <!-- <span class="glyphicon glyphicon-list-alt"></span> -->
-            <span class="glyphicon glyphicon-icon-photo">
-              <img :src="item.url" alt="item.name">
-            </span>
-            {{item.des}}
-            <span class="time">{{item.date}}</span>
-          </a>
+        <li class="list-group-item item" v-for="(item, index) in formatNews" :key="index">
+          <span class="photo">
+            <img :src="item.pic" alt="item.author">
+          </span>
+          <a :href="item.url" class="title" target="_blank" :title="item.title">{{item.title}}</a>
+          <span class="time">{{item.date}}</span>
         </li>
       </ul>
     </div>
   </div>
 </template>
 <style lang="scss" scoped>
+@import "../../assets/scss/public.scss";
+
 $w: 20px;
-.glyphicon-icon-photo {
-  width: $w;
-  height: $w;
-  overflow: hidden;
-  border-radius: 50%;
-  vertical-align: bottom;
-  img {
-    display: block;
-    width: 100%;
-    height: 100%;
+.item {
+  position: relative;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  .photo {
+    width: $w;
+    height: $w;
     overflow: hidden;
+    border-radius: 50%;
+    margin-right: 0.5em;
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+  }
+  .title {
+    flex: 1;
+    @include line(1);
+    margin: 0;
+  }
+  .time {
+    text-align: right;
   }
 }
 </style>
@@ -54,14 +68,15 @@ export default {
       if (!data || !Array.isArray(data)) {
         return
       }
-      let arr = data.splice(0, 5)
+      let arr = [...data]
       let _arr = arr.map((item, i) => {
-        let step = -24 * 60 * 60 * 1000 * (i + 1)
         return {
-          'url': item.logo,
-          'name': item.playername,
-          'des': `${item.seasonid} 战队 ${item.playername} ,累计 ${item.count} 场赛事`,
-          'date': formatTime(new Date().getTime() + step)
+          'pic': item.pic,
+          'url': item.url,
+          'article': item.article,
+          'author': item.author,
+          'title': item.title,
+          'date': formatTime(item.date)
         }
       })
       return _arr
@@ -78,23 +93,3 @@ export default {
 }
 
 </script>
-<style scoped="" lang="scss">
-@import "../../assets/scss/public.scss";
-
-.news-hot {
-  .list-group-item {
-    a {
-      position: relative;
-      @include line(1);
-      display: block;
-      box-sizing: border-box;
-      padding-right: 90px;
-    }
-    .time {
-      position: absolute;
-      right: 0;
-      top: 0;
-    }
-  }
-}
-</style>

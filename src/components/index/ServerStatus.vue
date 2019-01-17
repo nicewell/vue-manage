@@ -1,24 +1,31 @@
 <template>
-	<div class="server-status">
-		<div class="panel panel-default">
-			<div class="panel-heading">服务器状态</div>
-			<div class="panel-body">
-				<template v-for="(item,index) in serverData">
-					<p>{{item.name}}：{{item.percent}}%</p>
-					<div class="progress margin-bottom15">
-					  <!-- <div class="progress-bar progress-bar-striped" :class="item.type" role="progressbar" :aria-valuenow="item.percent" aria-valuemin="0" aria-valuemax="100" :style="{width: item.percent+'%'}"></div> -->
-					  <div class="progress-bar progress-bar-striped" :class="getSta(item.percent)" role="progressbar" :aria-valuenow="item.percent" aria-valuemin="0" aria-valuemax="100" :style="{width: item.percent+'%'}"></div>
-					</div>
-				</template>
-			</div>
-		</div>
-	</div>
+  <div class="server-status">
+    <div class="panel panel-default">
+      <div class="panel-heading">服务器状态</div>
+      <div class="panel-body">
+        <div v-for="(item,index) in serverData" :key="index">
+          <p>{{item.name}}：{{item.percent}}%</p>
+          <div class="progress margin-bottom15">
+            <div
+              class="progress-bar progress-bar-striped"
+              :class="getStatus(item.percent)"
+              role="progressbar"
+              :aria-valuenow="item.percent"
+              aria-valuemin="0"
+              aria-valuemax="100"
+              :style="{width: item.percent+'%'}"
+            ></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 <script>
 
 export default {
   name: 'ServerStatus',
-  data() {
+  data () {
     return {
       serverData: [{
         'name': '内存使用率',
@@ -40,25 +47,13 @@ export default {
     }
   },
   computed: {
-    getStatus(m) {
-      let status = 'success'
-      if (m > 50) {
-        status = 'info'
-      }
-      if (m > 70) {
-        status = 'warning'
-      }
-      if (m > 90) {
-        status = 'danger'
-      }
-      return 'progress-bar-' + status
-    }
+    // 
   },
-  created() {
+  created () {
     this.resetProgressBar()
   },
   methods: {
-    resetProgressBar() {
+    resetProgressBar () {
       let data = this.serverData
       let wekit = 'progress-bar-'
       data.forEach((item, index) => {
@@ -77,7 +72,7 @@ export default {
       })
     },
     // 为何计算属性此操作不行
-    getSta(m) {
+    getStatus (m) {
       let status = 'success'
       if (m > 50) {
         status = 'info'
@@ -95,5 +90,5 @@ export default {
 
 </script>
 <style scoped="" lang="scss">
-	// 
+//
 </style>

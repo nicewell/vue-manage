@@ -27,14 +27,16 @@
           </form>
         </div>
         <div class="col-md-12">
-          <template v-for="(item, index) in tags">
-            <div class="alert alert-info alert-dismissible pull-left">
-              <a href="javascript:;" class="close" @click="delTag(item.id)">
-                <span>&times;</span>
-              </a>
-              <strong>{{item.tag}}</strong>
-            </div>
-          </template>
+          <div
+            class="alert alert-info alert-dismissible pull-left"
+            v-for="(item, index) in tags"
+            :key="index"
+          >
+            <a href="javascript:;" class="close" @click="delTag(item.id)">
+              <span>&times;</span>
+            </a>
+            <strong>{{item.tag}}</strong>
+          </div>
         </div>
       </div>
     </div>

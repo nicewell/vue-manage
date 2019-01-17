@@ -30,8 +30,3 @@ export default {
   }
 }
 </script>
-<style scoped="" lang="scss">
-.user {
-  //
-}
-</style>

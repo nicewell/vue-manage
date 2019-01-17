@@ -63,8 +63,3 @@ export default {
 }
 
 </script>
-<style scoped="" lang="scss">
-// .pagination-group {
-//   //
-// }
-</style>
