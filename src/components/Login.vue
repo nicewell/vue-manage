@@ -46,6 +46,7 @@ export default {
   },
   created () {
     console.log('ok')
+    this.$emit('isLogin', true)
   }
 }
 

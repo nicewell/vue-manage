@@ -130,7 +130,39 @@ proxyTable: {
   }
 }
 ```
+#### [封装通用需求-axios](https://juejin.im/post/5c6e71acf265da2dda694b27?utm_source=gold_browser_extension)
+```js
+import axios from 'axios'
 
+// The http header that carries the xsrf token value { X-XSRF-TOKEN: '' }
+const csrfConfig = {
+  'X-XSRF-TOKEN': ''
+}
+// Build uniform request
+async function buildRequest(method, url, params, options) {
+  let param = {}
+  let config = {}
+  if (method === 'get') {
+    param = { params, ...options }
+  } else {
+    param = JSON.stringify(params)
+    config = {
+      headers: {
+        ...csrfConfig
+      }
+    }
+    config = Object.assign({}, config, options)
+  }
+  return axios[method](url, param, config)
+}
+
+export const get = (url, params = {}, options) => buildRequest('get', url, params, options)
+export const post = (url, params = {}, options) => buildRequest('post', url, params, options)
+// 这样的话，我们对外就暴露出 get 和 post 的方法，其他请求类似，在此只用 get 和 post 作为示例，入参分别是 API地址，数据 和 扩展配置。
+```
+
+### MongoDB
+- [Mongoose基础入门](http://www.cnblogs.com/xiaohuochai/p/7215067.html?utm_source=itdadao&utm_medium=referral)
 
 ### [Mockjs](http://mockjs.com)
 1. 安装
@@ -406,4 +438,28 @@ computed赋值：如果想让子组件跟着父组件修改，需要将赋值操
 解决办法：
 1.watch整个对象，设置deep为true，当该对象发生改变时，调用处理函数。
 2.将页面中绑定的属性写在computed函数中，watch这个computed中的函数，当对象值改变时会进入computed函数中，进而进入watch函数中，再调用处理函数。
+```
+
+
+#### 待处理
+- [ ] 面向数据
+- [ ] 目录结构定义components和page
+- [ ] 组件只接受数据传入而不做逻辑处理，以便更多次复用
+- [ ] 头部分别引入而不是引入到layout
+- [ ] Koa应用生成器`koa-generator`
+```js
+// 配置子路由(层级路由)
+// user.js
+const router = require('koa-router')()
+router.get('/',(ctx)=>{
+  ctx.body = 'user 首页'
+})
+router.get('/edit',(ctx)=>{
+  ctx.body = 'user edit 页'
+})
+module.exports = router
+
+// app.js
+const user = require('user.js')
+router.use('/user', user.routes()) // 里面的即为'/user'开头 ['/user'=>'/user'+'/'=>'user 首页','/user/edit'=>'/user'+'/edit'=>'user edit 页']
 ```

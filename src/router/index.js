@@ -27,60 +27,62 @@ export default new Router({
       component: Duang
     },
     {
-      path: '/',
-      name: 'Index',
-      component: Index
-    },
-    {
       path: '/login',
       name: 'Login',
       component: Login
     },
     {
-      path: '/content',
-      redirect: '/content/contentManager',
-      name: 'Content',
-      component: Content,
+      path: '/',
+      name: 'Index',
+      component: Index,
       children: [
         {
-          path: 'contentManager',
-          name: 'ContentManager',
-          component: ContentManager
+          path: '/content',
+          redirect: '/content/contentManager',
+          name: 'Content',
+          component: Content,
+          children: [
+            {
+              path: 'contentManager',
+              name: 'ContentManager',
+              component: ContentManager
+            },
+            {
+              path: 'contentAdd',
+              name: 'ContentAdd',
+              component: ContentAdd
+            }
+          ]
         },
         {
-          path: 'contentAdd',
-          name: 'ContentAdd',
-          component: ContentAdd
-        }
-      ]
-    },
-    {
-      path: '/user',
-      redirect: '/user/userManager',
-      name: 'User',
-      component: User,
-      children: [
-        {
-          path: 'userManager',
-          name: 'UserManager',
-          component: UserManager
+          path: '/user',
+          redirect: '/user/userManager',
+          name: 'User',
+          component: User,
+          children: [
+            {
+              path: 'userManager',
+              name: 'UserManager',
+              component: UserManager
+            },
+            {
+              path: 'userAddPanel',
+              name: 'UserAddPanel',
+              component: UserAddPanel
+            }
+          ]
         },
         {
-          path: 'userAddPanel',
-          name: 'UserAddPanel',
-          component: UserAddPanel
+          path: '/tags',
+          name: 'Tags',
+          component: Tags
+        },
+        {
+          path: '/home',
+          name: 'Home',
+          component: Home
         }
       ]
-    },
-    {
-      path: '/tags',
-      name: 'Tags',
-      component: Tags
-    },
-    {
-      path: '/home',
-      name: 'Home',
-      component: Home
     }
   ]
 })
